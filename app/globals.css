@@ -1,0 +1,51 @@
+:root {
+  color-scheme: light dark;
+
+  /* Brand colours, taken from the Mathology logo */
+  --brand-red: #e50042;
+  --brand-blue: #6bbfeb;
+  --brand-yellow: #fdd201;
+  --brand-ink: #414042;
+
+  --bg: #f7f8fb;
+  --surface: rgba(255, 255, 255, 0.72);
+  --border: rgba(65, 64, 66, 0.1);
+  --text: #2a292b;
+  --text-muted: #6b6a6e;
+  --grid-line: rgba(65, 64, 66, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121317;
+    --surface: rgba(30, 31, 37, 0.7);
+    --border: rgba(255, 255, 255, 0.08);
+    --text: #f3f3f5;
+    --text-muted: #a3a3ab;
+    --grid-line: rgba(255, 255, 255, 0.045);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-zalando), system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--brand-yellow);
+  color: var(--brand-ink);
+}
