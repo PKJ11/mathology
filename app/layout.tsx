@@ -10,8 +10,8 @@ const zalando = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Mathology — Coming Soon",
-  description: "Mathology by Logicology. A fresh way to learn maths is on its way.",
+  title: "Mathology",
+  description: "Mathology by Logicology. Interactive chapters for learning maths.",
   icons: { icon: "/logo-color.svg" },
 };
 

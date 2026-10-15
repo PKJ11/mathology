@@ -1,0 +1,123 @@
+/* Chapter list */
+
+.list {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 48px 16px 64px;
+}
+
+.heading {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.heading img {
+  height: 56px;
+  width: auto;
+}
+
+.heading h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 800;
+}
+
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--brand-blue);
+}
+
+.cardNumber {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+
+.cardTitle {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Chapter viewer */
+
+.viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+  font-size: 0.9rem;
+}
+
+.bar a {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bar a:hover {
+  color: var(--brand-red);
+}
+
+.barTitle {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.barNav {
+  display: flex;
+  gap: 12px;
+}
+
+.disabled {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.frame {
+  flex: 1;
+  width: 100%;
+  border: 0;
+  display: block;
+}
