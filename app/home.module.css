@@ -1,0 +1,183 @@
+/* Home page hero, laid out on the 2302 × 1080 design artboard */
+
+.hero {
+  container-type: inline-size;
+  position: relative;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #fff;
+  color: var(--brand-ink);
+}
+
+.stage {
+  /* One artboard unit */
+  --u: calc(100cqw / 2302);
+
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2302 / 1080;
+}
+
+.shape {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.blob {
+  fill: #fff;
+}
+
+.shadow {
+  fill: rgba(0, 40, 34, 0.14);
+  animation: fade-in 0.6s ease 1.2s both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+.mobileOnly {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shadow {
+    animation: none;
+  }
+}
+
+/* Logo and copy */
+
+.logo {
+  position: absolute;
+  left: 50%;
+  top: calc(28 * var(--u));
+  width: calc(158 * var(--u));
+  min-width: 72px;
+  transform: translateX(-50%);
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: calc(268 * var(--u));
+  width: calc(1300 * var(--u));
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.content h1 {
+  margin: 0;
+  /* Zalando is wider than the mockup's face, so it runs a little smaller */
+  font-size: calc(80 * var(--u));
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  color: var(--brand-ink);
+}
+
+.content p {
+  max-width: 24em;
+  margin: 0.6em auto 0;
+  font-size: max(14px, calc(29 * var(--u)));
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: calc(92 * var(--u));
+  margin-top: calc(56 * var(--u));
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(292 * var(--u));
+  min-width: 150px;
+  height: calc(74 * var(--u));
+  min-height: 44px;
+  padding: 0 1em;
+  border-radius: 999px;
+  background: var(--brand-yellow);
+  color: var(--brand-ink);
+  font-size: max(12px, calc(22 * var(--u)));
+  font-weight: 500;
+  line-height: 1.15;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 rgba(65, 64, 66, 0.15);
+}
+
+.button:focus-visible {
+  outline: 3px solid var(--brand-ink);
+  outline-offset: 3px;
+}
+
+/* Phones: switch to the 800 × 1700 portrait artboard */
+
+@media (max-width: 820px) {
+  .stage {
+    --u: calc(100cqw / 800);
+    aspect-ratio: 800 / 1700;
+  }
+
+  .desktopOnly {
+    display: none;
+  }
+
+  .mobileOnly {
+    display: block;
+  }
+
+  .logo {
+    top: calc(40 * var(--u));
+    width: calc(130 * var(--u));
+  }
+
+  .content {
+    top: calc(200 * var(--u));
+    width: calc(700 * var(--u));
+  }
+
+  .content h1 {
+    font-size: calc(78 * var(--u));
+    white-space: normal;
+  }
+
+  .content p {
+    font-size: max(15px, calc(32 * var(--u)));
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: center;
+    gap: calc(24 * var(--u));
+    margin-top: calc(48 * var(--u));
+  }
+
+  .button {
+    width: calc(440 * var(--u));
+    height: calc(84 * var(--u));
+    font-size: max(14px, calc(28 * var(--u)));
+  }
+}

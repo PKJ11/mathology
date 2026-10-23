@@ -1,0 +1,100 @@
+/*
+ * Shared green backdrop and decorative artwork. The page provides `--u` (one
+ * artboard unit) and must be an inline-size container so `cqw` resolves.
+ */
+
+.backdrop {
+  --green: #00977f;
+  --grid: rgba(255, 255, 255, 0.08);
+
+  position: absolute;
+  inset: 0;
+  background-color: var(--green);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: calc(100cqw / 70) calc(100cqw / 70);
+  animation: rise-backdrop 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+@keyframes rise-backdrop {
+  from {
+    translate: 0 100%;
+  }
+}
+
+.item {
+  --x: var(--dx);
+  --y: var(--dy);
+  --w: var(--dw);
+  --r: var(--dr);
+
+  position: absolute;
+  left: calc(var(--x) * var(--u));
+  top: calc(var(--y) * var(--u));
+  width: calc(var(--w) * var(--u));
+  height: auto;
+  rotate: calc(var(--r) * 1deg);
+  pointer-events: none;
+  user-select: none;
+  /* Uses `translate` so it doesn't fight the `transform` of .float */
+  animation: rise-in 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) calc(0.6s + var(--i) * 50ms) both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    translate: 0 100vh;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.ghost {
+  /* The operator artwork is white; tint it to the pale grey of the design */
+  filter: brightness(0.94);
+}
+
+.float {
+  animation:
+    rise-in 0.8s cubic-bezier(0.34, 1.4, 0.64, 1) calc(0.6s + var(--i) * 50ms) both,
+    float 6s ease-in-out calc(var(--i) * -0.7s) infinite;
+}
+
+@keyframes float {
+  50% {
+    transform: translateY(calc(-14 * var(--u)));
+  }
+}
+
+@media (min-width: 821px) {
+  .hideDesktop {
+    display: none;
+  }
+}
+
+@media (max-width: 820px) {
+  .backdrop {
+    background-size: calc(100cqw / 24) calc(100cqw / 24);
+  }
+
+  .item {
+    --x: var(--mx);
+    --y: var(--my);
+    --w: var(--mw);
+    --r: var(--mr);
+  }
+
+  .hideMobile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop,
+  .item,
+  .float {
+    animation: none;
+  }
+}
