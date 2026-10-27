@@ -1,0 +1,3028 @@
+{
+ "1": {
+  "chapterId": "M10.01",
+  "groups": {
+   "1": "Build numbers from primes",
+   "2": "One number, one prime recipe",
+   "3": "Shared pieces and complete sets",
+   "4": "When do patterns meet again?",
+   "5": "Show that a number is composite",
+   "6": "Why √p cannot be a fraction",
+   "7": "Carry irrationality through an expression",
+   "8": "Look inside the divisibility lemma",
+   "9": "Explore three-number relationships",
+   "10": "Ready for real numbers"
+  },
+  "skills": {
+   "M10.01.S01.M01": {
+    "title": "Distinguish a prime number from a composite number",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S01.M02": {
+    "title": "Select a prime divisor of a composite number",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S01.M03": {
+    "title": "Continue dividing until every factor is prime",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S01.M04": {
+    "title": "Express repeated prime factors using exponents",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S01.M05": {
+    "title": "Verify a factorisation by multiplying its factors",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S02.M01": {
+    "title": "State uniqueness of prime factorisation apart from factor order",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S02.M02": {
+    "title": "Compare two factorizations after reordering their prime factors",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S02.M03": {
+    "title": "Identify the prime factors required for a number to end in zero",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S02.M04": {
+    "title": "Use prime factors to justify why a given power cannot end in zero",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S03.M01": {
+    "title": "Align the prime factorizations of two or three numbers",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S03.M02": {
+    "title": "Choose the minimum exponent of each shared prime for HCF",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S03.M03": {
+    "title": "Choose the maximum exponent of every occurring prime for LCM",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S03.M04": {
+    "title": "Multiply the selected prime powers to obtain HCF or LCM",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S04.M01": {
+    "title": "Verify HCF × LCM = product for two positive integers",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S04.M02": {
+    "title": "Find an unknown LCM from the HCF and the two integers",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S04.M03": {
+    "title": "Identify a common repeat time as an LCM situation",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S04.M04": {
+    "title": "Interpret the repeat time in the problem's units",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S05.M01": {
+    "title": "Extract a common factor from a numerical expression",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S05.M02": {
+    "title": "Show both factors are integers greater than one",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S05.M03": {
+    "title": "Explain why the exhibited factors make the number composite",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S06.M01": {
+    "title": "Assume the root is a rational fraction in lowest terms",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S06.M02": {
+    "title": "Square the assumed equality and rearrange it",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S06.M03": {
+    "title": "Use p dividing a² implies p divides a for prime p",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S06.M04": {
+    "title": "Deduce that the numerator and denominator share a prime factor",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S06.M05": {
+    "title": "State the contradiction with lowest terms and conclude irrationality",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S07.M01": {
+    "title": "Assume a given rational-plus-irrational expression is rational",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S07.M02": {
+    "title": "Isolate the known irrational root by rearrangement",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S07.M03": {
+    "title": "Use closure of rational numbers to derive a contradiction",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S07.M04": {
+    "title": "Handle a nonzero rational multiple or reciprocal of an irrational root",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.01.S08.M01": {
+    "title": "Explain why squaring changes prime exponents but adds no new primes",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.01.S08.M02": {
+    "title": "Use uniqueness to justify p dividing a² implies p divides a",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.01.S09.M01": {
+    "title": "Show by example why the two-number product identity fails for three numbers",
+    "group": 9,
+    "scope": "Source enrichment"
+   },
+   "M10.01.S09.M02": {
+    "title": "Check a supplied three-number HCF or LCM relationship numerically",
+    "group": 9,
+    "scope": "Source enrichment"
+   },
+   "M10.01.S10.M01": {
+    "title": "Use divisibility rules for 2, 3 and 5",
+    "group": 10,
+    "scope": "Prerequisite support"
+   },
+   "M10.01.S10.M02": {
+    "title": "Distinguish factors from multiples",
+    "group": 10,
+    "scope": "Prerequisite support"
+   },
+   "M10.01.S10.M03": {
+    "title": "Simplify a rational fraction to lowest terms",
+    "group": 10,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "2": {
+  "chapterId": "M10.02",
+  "groups": {
+   "1": "Give every term its place",
+   "2": "When does the output become zero?",
+   "3": "Meet the x-axis",
+   "4": "Split. Group. Find the zeroes.",
+   "5": "Two zeroes. Two connections.",
+   "6": "Build a polynomial backwards",
+   "7": "Connect three zeroes",
+   "8": "A cubic worth investigating",
+   "9": "Make the algebra click"
+  },
+  "skills": {
+   "M10.02.S01.M01": {
+    "title": "Identify a polynomial in one variable",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S01.M02": {
+    "title": "Determine degree from the highest nonzero power after simplification",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S01.M03": {
+    "title": "Classify a polynomial as linear, quadratic or cubic",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S01.M04": {
+    "title": "Identify signed coefficients including zero coefficients for missing terms",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S02.M01": {
+    "title": "Substitute a candidate value into p(x)",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S02.M02": {
+    "title": "Decide whether p(x)=0",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S02.M03": {
+    "title": "Distinguish a zero of a polynomial from its value at zero",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S02.M04": {
+    "title": "Relate a polynomial zero to the x-coordinate of an x-axis intersection",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S03.M01": {
+    "title": "Count distinct x-axis intersections of a given graph",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S03.M02": {
+    "title": "Recognise touching the x-axis as a zero",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S03.M03": {
+    "title": "Distinguish zero, one and two zeroes of a quadratic",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S03.M04": {
+    "title": "Relate the maximum possible number of zeroes to polynomial degree",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S04.M01": {
+    "title": "Choose split terms whose sum is b and product is ac",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S04.M02": {
+    "title": "Group terms and extract common factors",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S04.M03": {
+    "title": "Set each linear factor equal to zero",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S04.M04": {
+    "title": "Solve for each zero including zero or a repeated zero",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S04.M05": {
+    "title": "Use difference of squares to obtain simple surd zeroes",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S05.M01": {
+    "title": "Calculate the sum of two zeroes",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S05.M02": {
+    "title": "Calculate their product",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S05.M03": {
+    "title": "Calculate −b/a and c/a using signed coefficients",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S05.M04": {
+    "title": "Compare the two calculations to verify the relationships",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S06.M01": {
+    "title": "Use the negative of the given sum as the monic linear coefficient",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S06.M02": {
+    "title": "Use the given product as the monic constant term",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S06.M03": {
+    "title": "Write x²−Sx+P",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S06.M04": {
+    "title": "Recognise that nonzero scalar multiples have the same zeroes",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S06.M05": {
+    "title": "Check the constructed polynomial against the requested sum and product",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S07.M01": {
+    "title": "Calculate the sum of three given zeroes",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S07.M02": {
+    "title": "Calculate the sum of the three pairwise products",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S07.M03": {
+    "title": "Calculate the product of all three zeroes",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S07.M04": {
+    "title": "Relate these results to −b/a, c/a and −d/a respectively",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.02.S08.M01": {
+    "title": "Verify a proposed cubic zero by substitution",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.02.S08.M02": {
+    "title": "Check all three coefficient relationships in the starred example",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.02.S09.M01": {
+    "title": "Apply the distributive law",
+    "group": 9,
+    "scope": "Prerequisite support"
+   },
+   "M10.02.S09.M02": {
+    "title": "Expand a square or a difference of squares",
+    "group": 9,
+    "scope": "Prerequisite support"
+   },
+   "M10.02.S09.M03": {
+    "title": "Evaluate powers of negative numbers with brackets",
+    "group": 9,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "3": {
+  "chapterId": "M10.03",
+  "groups": {
+   "1": "Two clues. Two unknowns.",
+   "2": "Make the lines meet",
+   "3": "One point, no point, a whole line",
+   "4": "Replace one unknown",
+   "5": "Make one variable disappear",
+   "6": "When the variables disappear",
+   "7": "Put the answer back in the story",
+   "8": "Choose a useful route",
+   "9": "Keep both sides in balance"
+  },
+  "skills": {
+   "M10.03.S01.M01": {
+    "title": "Define two unknown quantities and their units",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S01.M02": {
+    "title": "Translate two independent constraints into equations",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S01.M03": {
+    "title": "Rearrange each equation to a consistent standard form",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S01.M04": {
+    "title": "Identify a, b and c with their signs",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S02.M01": {
+    "title": "Generate coordinate pairs satisfying each equation",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S02.M02": {
+    "title": "Choose a usable axis scale",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S02.M03": {
+    "title": "Plot two points and draw each line",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S02.M04": {
+    "title": "Read the intersection coordinates as a common solution",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S02.M05": {
+    "title": "Verify the read solution in both equations",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S03.M01": {
+    "title": "Relate intersecting lines to one solution",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S03.M02": {
+    "title": "Relate parallel lines to no solution",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S03.M03": {
+    "title": "Relate coincident lines to infinitely many solutions",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S03.M04": {
+    "title": "Use coefficient comparisons to distinguish the three cases",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S03.M05": {
+    "title": "Describe consistent, inconsistent and dependent systems correctly",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S04.M01": {
+    "title": "Isolate one variable in a suitable equation",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S04.M02": {
+    "title": "Substitute its expression into the other equation",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S04.M03": {
+    "title": "Solve the resulting equation in one variable",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S04.M04": {
+    "title": "Back-substitute to find the second variable",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S04.M05": {
+    "title": "Check the ordered pair in both original equations",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S05.M01": {
+    "title": "Choose a variable to eliminate",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S05.M02": {
+    "title": "Multiply whole equations to align one coefficient",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S05.M03": {
+    "title": "Add or subtract consistently to eliminate that variable",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S05.M04": {
+    "title": "Solve for the remaining variable",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S05.M05": {
+    "title": "Recover the other variable by substitution",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S06.M01": {
+    "title": "Recognise a contradiction such as 0=5 as no solution",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S06.M02": {
+    "title": "Recognise an identity such as 0=0 as dependent equations",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S06.M03": {
+    "title": "State that one equation still constrains infinitely many ordered pairs",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S07.M01": {
+    "title": "Express an age at an earlier or later time",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S07.M02": {
+    "title": "Express a two-digit number as 10x+y",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S07.M03": {
+    "title": "Translate a ratio using a common multiplier",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S07.M04": {
+    "title": "Form equations for prices, fixed charges or incomes",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S07.M05": {
+    "title": "Model changes to a fraction's numerator and denominator",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S07.M06": {
+    "title": "Check positivity, integer or contextual restrictions on the solution",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S08.M01": {
+    "title": "Select substitution when a variable is easily isolated",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S08.M02": {
+    "title": "Select elimination when coefficients align conveniently",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S08.M03": {
+    "title": "Follow a method specifically requested in the question",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S08.M04": {
+    "title": "Substitute into the original conditions to check the result",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.03.S09.M01": {
+    "title": "Preserve equality when operating on both sides",
+    "group": 9,
+    "scope": "Prerequisite support"
+   },
+   "M10.03.S09.M02": {
+    "title": "Clear fractions using a common denominator",
+    "group": 9,
+    "scope": "Prerequisite support"
+   },
+   "M10.03.S09.M03": {
+    "title": "Read and plot an ordered pair",
+    "group": 9,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "4": {
+  "chapterId": "M10.04",
+  "groups": {
+   "1": "Standard-form workshop",
+   "2": "Root tester",
+   "3": "Split-term workshop",
+   "4": "Zero-product switchboard",
+   "5": "Formula workbench",
+   "6": "Discriminant explorer",
+   "7": "Equal-root parameter lab",
+   "8": "Story-to-equation studio",
+   "9": "Solution filter",
+   "10": "Roots-to-equation bridge",
+   "11": "Quadratic readiness"
+  },
+  "skills": {
+   "M10.04.S01.M01": {
+    "title": "Expand both sides of a given equation",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S01.M02": {
+    "title": "Bring all terms to one side",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S01.M03": {
+    "title": "Collect like terms before identifying degree",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S01.M04": {
+    "title": "Identify signed coefficients a, b and c",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S01.M05": {
+    "title": "Require a≠0 for a quadratic equation",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S02.M01": {
+    "title": "Substitute a proposed root with correct brackets",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S02.M02": {
+    "title": "Evaluate the resulting expression",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S02.M03": {
+    "title": "Decide whether the equation is satisfied",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S02.M04": {
+    "title": "Relate quadratic roots to polynomial zeroes",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S02.M05": {
+    "title": "Distinguish two equal roots from two distinct real roots",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S03.M01": {
+    "title": "Compute ac with correct signs",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S03.M02": {
+    "title": "Find split terms with sum b and product ac",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S03.M03": {
+    "title": "Factor the grouped expression",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S03.M04": {
+    "title": "Check factors by re-expansion",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S03.M05": {
+    "title": "Handle fractional or simple surd coefficients",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S04.M01": {
+    "title": "Apply zero product when the product is equal to zero",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S04.M02": {
+    "title": "Set each linear factor equal to zero separately",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S04.M03": {
+    "title": "Solve both linear equations",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S04.M04": {
+    "title": "Retain a zero root rather than divide it away",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S04.M05": {
+    "title": "Verify every candidate in the original equation",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S05.M01": {
+    "title": "Extract coefficients from standard form",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S05.M02": {
+    "title": "Calculate −b, b²−4ac and 2a separately",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S05.M03": {
+    "title": "Substitute signed values with brackets",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S05.M04": {
+    "title": "Evaluate both plus and minus branches",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S05.M05": {
+    "title": "Simplify fractional or surd roots",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S05.M06": {
+    "title": "Check that the discriminant permits real roots",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S06.M01": {
+    "title": "Calculate D=b²−4ac",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S06.M02": {
+    "title": "Compare D with zero",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S06.M03": {
+    "title": "Interpret D>0 as two distinct real roots",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S06.M04": {
+    "title": "Interpret D=0 as two equal real roots",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S06.M05": {
+    "title": "Interpret D<0 as no real roots",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S06.M06": {
+    "title": "Distinguish real roots from integer or rational roots",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S07.M01": {
+    "title": "Form the equation D=0 in the parameter",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S07.M02": {
+    "title": "Solve the parameter equation retaining all branches",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S07.M03": {
+    "title": "Reject parameter values that make the leading coefficient zero",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S07.M04": {
+    "title": "Check remaining values in the original equation",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S08.M01": {
+    "title": "Define an unknown with its unit",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S08.M02": {
+    "title": "Express linked lengths, ages or consecutive integers",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S08.M03": {
+    "title": "Translate a product or area condition into an equation",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S08.M04": {
+    "title": "Translate travel time using distance divided by speed",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S08.M05": {
+    "title": "Record restrictions introduced by denominators or the context",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S08.M06": {
+    "title": "Simplify the model into standard form",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S09.M01": {
+    "title": "Decide whether a model has real candidate solutions",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S09.M02": {
+    "title": "Solve by a suitable permitted method",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S09.M03": {
+    "title": "Reject negative lengths or other inadmissible candidates with a reason",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S09.M04": {
+    "title": "Check the original context rather than only the rearranged equation",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S09.M05": {
+    "title": "Report all admissible quantities with units",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.04.S10.M01": {
+    "title": "Convert each selected root r into a factor x−r",
+    "group": 10,
+    "scope": "Product bridge"
+   },
+   "M10.04.S10.M02": {
+    "title": "Calculate the signed sum and product of the roots",
+    "group": 10,
+    "scope": "Product bridge"
+   },
+   "M10.04.S10.M03": {
+    "title": "Write x²−(r+s)x+rs=0",
+    "group": 10,
+    "scope": "Product bridge"
+   },
+   "M10.04.S10.M04": {
+    "title": "Recognise nonzero scalar multiples as equivalent root equations",
+    "group": 10,
+    "scope": "Product bridge"
+   },
+   "M10.04.S11.M01": {
+    "title": "Expand products of linear expressions",
+    "group": 11,
+    "scope": "Prerequisite support"
+   },
+   "M10.04.S11.M02": {
+    "title": "Simplify fractions and simple radicals",
+    "group": 11,
+    "scope": "Prerequisite support"
+   },
+   "M10.04.S11.M03": {
+    "title": "Solve a one-variable linear equation",
+    "group": 11,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "5": {
+  "chapterId": "M10.05",
+  "groups": {
+   "1": "Difference detective",
+   "2": "Term-step builder",
+   "3": "Membership gate",
+   "4": "Finite-list navigator",
+   "5": "Forward-reverse pairing",
+   "6": "Inverse AP workbench",
+   "7": "AP story studio",
+   "8": "Optional pattern challenges",
+   "9": "Sequence readiness"
+  },
+  "skills": {
+   "M10.05.S01.M01": {
+    "title": "Calculate successive differences in the correct order",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S01.M02": {
+    "title": "Check that the difference is constant across the list",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S01.M03": {
+    "title": "Distinguish additive change from repeated multiplication",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S01.M04": {
+    "title": "Identify a and d including negative or zero d",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S01.M05": {
+    "title": "Extend an AP by repeated addition",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S02.M01": {
+    "title": "Explain why the nth term uses n−1 increments",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S02.M02": {
+    "title": "Substitute into a_n=a+(n−1)d",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S02.M03": {
+    "title": "Find a specified term",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S02.M04": {
+    "title": "Rearrange the formula to find a or d",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S02.M05": {
+    "title": "Represent two known terms as equations in a and d",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S03.M01": {
+    "title": "Set a+(n−1)d equal to the proposed term",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S03.M02": {
+    "title": "Solve for n",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S03.M03": {
+    "title": "Require n to be a positive integer",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S03.M04": {
+    "title": "Use the sign of d to check a position result",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S03.M05": {
+    "title": "Decide whether a proposed number belongs to the AP",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S04.M01": {
+    "title": "Identify the first and last qualifying multiple in a range",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S04.M02": {
+    "title": "Determine the common difference",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S04.M03": {
+    "title": "Count terms including both endpoints",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S04.M04": {
+    "title": "Find a term counted from the end of a finite AP",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S05.M01": {
+    "title": "Pair forward and reverse forms of the same sum",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S05.M02": {
+    "title": "Use S_n=n[2a+(n−1)d]/2",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S05.M03": {
+    "title": "Use S_n=n(a+l)/2 when the last term is known",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S05.M04": {
+    "title": "Distinguish an individual term a_n from the sum S_n",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S05.M05": {
+    "title": "Substitute signed or fractional values accurately",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S06.M01": {
+    "title": "Form an equation from a known sum",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S06.M02": {
+    "title": "Combine term and sum constraints to find unknowns",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S06.M03": {
+    "title": "Solve for a valid positive-integer number of terms",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S06.M04": {
+    "title": "Reject inadmissible roots of a term-count equation",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S06.M05": {
+    "title": "Use a_n=S_n−S_(n−1) to recover a term from sums",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S07.M01": {
+    "title": "Identify the first period and its value",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S07.M02": {
+    "title": "Translate a constant increase or decrease into d",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S07.M03": {
+    "title": "Decide whether the question asks for a final term or accumulated total",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S07.M04": {
+    "title": "Map real periods or rows to the correct index",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S07.M05": {
+    "title": "Check the answer against the original situation",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.05.S08.M01": {
+    "title": "Find the first index at which a term becomes negative",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.05.S08.M02": {
+    "title": "Translate equal sums on either side of a position into an equation",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.05.S08.M03": {
+    "title": "Distinguish the number of gaps from the number of rungs",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.05.S08.M04": {
+    "title": "Combine an AP sum with a geometric volume model",
+    "group": 8,
+    "scope": "Source enrichment"
+   },
+   "M10.05.S09.M01": {
+    "title": "Subtract signed numbers and fractions",
+    "group": 9,
+    "scope": "Prerequisite support"
+   },
+   "M10.05.S09.M02": {
+    "title": "Translate an ordinal position into a positive integer index",
+    "group": 9,
+    "scope": "Prerequisite support"
+   },
+   "M10.05.S09.M03": {
+    "title": "Solve a linear equation in one unknown",
+    "group": 9,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "6": {
+  "chapterId": "M10.06",
+  "groups": {
+   "1": "Shape & correspondence",
+   "2": "Parallel-cut explorer",
+   "3": "Area proof studio",
+   "4": "Converse checker",
+   "5": "Criterion detective",
+   "6": "Correspondence workbench",
+   "7": "Proof builder",
+   "8": "Shadow measurement",
+   "9": "RHS enrichment",
+   "10": "Geometry readiness"
+  },
+  "skills": {
+   "M10.06.S01.M01": {
+    "title": "Identify corresponding vertices and angles",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S01.M02": {
+    "title": "Check equality of corresponding angles",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S01.M03": {
+    "title": "Check proportionality of corresponding sides",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S01.M04": {
+    "title": "Distinguish same shape from same size",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S01.M05": {
+    "title": "Explain why equal angles alone do not ensure polygon similarity",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S02.M01": {
+    "title": "Identify a line parallel to one side of a triangle",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S02.M02": {
+    "title": "Match the two divided sides in the correct order",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S02.M03": {
+    "title": "Write a ratio of corresponding segments",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S02.M04": {
+    "title": "Distinguish a part-to-part ratio from a part-to-whole ratio",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S02.M05": {
+    "title": "Solve the resulting proportion for a missing length",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S03.M01": {
+    "title": "Identify triangles with a common altitude",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S03.M02": {
+    "title": "Express their area ratio as a ratio of bases",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S03.M03": {
+    "title": "Use equal areas for triangles on the same base between parallel lines",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S03.M04": {
+    "title": "Combine the area ratios to establish proportional division",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S04.M01": {
+    "title": "Calculate the ratios in which a line divides two sides",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S04.M02": {
+    "title": "Check equality of those ratios",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S04.M03": {
+    "title": "Infer parallelism using the converse theorem",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S04.M04": {
+    "title": "State the relevant converse rather than assuming the forward theorem proves parallelism",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S05.M01": {
+    "title": "Identify two equal angle pairs for AA similarity",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S05.M02": {
+    "title": "Check three corresponding side ratios for SSS similarity",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S05.M03": {
+    "title": "Check two side ratios and the included angle for SAS similarity",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S05.M04": {
+    "title": "Write the vertices in corresponding order in a similarity statement",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S05.M05": {
+    "title": "Explain why an unmatched side or non-included angle is insufficient",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S06.M01": {
+    "title": "Read corresponding angle equalities from a similarity statement",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S06.M02": {
+    "title": "Write a proportion between corresponding sides",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S06.M03": {
+    "title": "Solve for a missing side length",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S06.M04": {
+    "title": "Use the angle sum to recover a missing angle",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S06.M05": {
+    "title": "Check the scale factor is consistent across the matched sides",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S07.M01": {
+    "title": "Identify the two triangles relevant to a target ratio",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S07.M02": {
+    "title": "Find equal angles from parallel lines, vertical angles or right angles",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S07.M03": {
+    "title": "Cite a valid similarity criterion",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S07.M04": {
+    "title": "Use the established correspondence to derive the requested conclusion",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S07.M05": {
+    "title": "Separate given facts from statements that still require proof",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S08.M01": {
+    "title": "Model an object and its shadow as a right triangle",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S08.M02": {
+    "title": "Justify a common angle under the same sunlight",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S08.M03": {
+    "title": "Convert heights and shadows to matching units",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S08.M04": {
+    "title": "Set up corresponding height-to-shadow ratios",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S08.M05": {
+    "title": "Interpret the missing height or distance",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.06.S09.M01": {
+    "title": "Check both triangles are right-angled",
+    "group": 9,
+    "scope": "Source enrichment"
+   },
+   "M10.06.S09.M02": {
+    "title": "Compare hypotenuse and corresponding leg ratios",
+    "group": 9,
+    "scope": "Source enrichment"
+   },
+   "M10.06.S09.M03": {
+    "title": "Use the reader-note RHS similarity criterion with its conditions",
+    "group": 9,
+    "scope": "Source enrichment"
+   },
+   "M10.06.S10.M01": {
+    "title": "Use triangle angle sum and parallel-line angle facts",
+    "group": 10,
+    "scope": "Prerequisite support"
+   },
+   "M10.06.S10.M02": {
+    "title": "Simplify a proportion",
+    "group": 10,
+    "scope": "Prerequisite support"
+   },
+   "M10.06.S10.M03": {
+    "title": "Identify a triangle base and its corresponding altitude",
+    "group": 10,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "7": {
+  "chapterId": "M10.07",
+  "groups": {
+   "1": "Distance bridge",
+   "2": "Shape detective",
+   "3": "Axis constraints",
+   "4": "Section slider",
+   "5": "Ratio detective",
+   "6": "Equal-parts workshop",
+   "7": "Coordinate applications",
+   "8": "Coordinate readiness"
+  },
+  "skills": {
+   "M10.07.S01.M01": {
+    "title": "Calculate signed horizontal and vertical differences",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S01.M02": {
+    "title": "Square both differences and add",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S01.M03": {
+    "title": "Take the nonnegative square root",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S01.M04": {
+    "title": "Use distance from the origin as a special case",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S01.M05": {
+    "title": "Simplify the answer exactly where appropriate",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S02.M01": {
+    "title": "Calculate the needed sides and diagonals",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S02.M02": {
+    "title": "Check collinearity by a distance-addition relation",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S02.M03": {
+    "title": "Recognise an isosceles or equilateral triangle using equal distances",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S02.M04": {
+    "title": "Check a right angle through squared lengths",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S02.M05": {
+    "title": "Use sufficient side and diagonal evidence to classify a quadrilateral",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S03.M01": {
+    "title": "Use x=0 or y=0 for a point constrained to an axis",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S03.M02": {
+    "title": "Equate squared distances for equidistance",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S03.M03": {
+    "title": "Form an equation for an unknown coordinate",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S03.M04": {
+    "title": "Retain all coordinate solutions that satisfy the conditions",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S03.M05": {
+    "title": "Check candidates in the original distance condition",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S04.M01": {
+    "title": "Interpret m:n as AP:PB in the stated endpoint order",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S04.M02": {
+    "title": "Assign each weight to the opposite endpoint coordinate",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S04.M03": {
+    "title": "Compute the weighted x-coordinate",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S04.M04": {
+    "title": "Compute the weighted y-coordinate",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S04.M05": {
+    "title": "Check the point lies between the endpoints",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S05.M01": {
+    "title": "Represent an unknown ratio as k:1",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S05.M02": {
+    "title": "Substitute a known dividing point into the section formula",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S05.M03": {
+    "title": "Use an axis condition to solve for the ratio",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S05.M04": {
+    "title": "Verify the ratio against the other coordinate",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S06.M01": {
+    "title": "Use the midpoint formula as the 1:1 case",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S06.M02": {
+    "title": "Recover an endpoint from a midpoint and the other endpoint",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S06.M03": {
+    "title": "Use equal diagonal midpoints in a parallelogram",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S06.M04": {
+    "title": "Translate trisection or quartering into internal ratios",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S06.M05": {
+    "title": "Locate each requested division point in order",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S07.M01": {
+    "title": "Translate a diagram's lengths and rows into coordinates",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S07.M02": {
+    "title": "Use a circle centre as the midpoint of a diameter",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S07.M03": {
+    "title": "Find rhombus diagonals by the distance formula",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S07.M04": {
+    "title": "Use half the product of rhombus diagonals for area",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.07.S08.M01": {
+    "title": "Locate a signed ordered pair in the coordinate plane",
+    "group": 8,
+    "scope": "Prerequisite support"
+   },
+   "M10.07.S08.M02": {
+    "title": "Use Pythagoras in a right triangle",
+    "group": 8,
+    "scope": "Prerequisite support"
+   },
+   "M10.07.S08.M03": {
+    "title": "Simplify a square root of a sum of squares",
+    "group": 8,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "8": {
+  "chapterId": "M10.08",
+  "groups": {
+   "1": "Side-name switchboard",
+   "2": "Six-ratio builder",
+   "3": "Scale-invariance explorer",
+   "4": "Recover the triangle",
+   "5": "Exact-angle workshop",
+   "6": "Angle equation detective",
+   "7": "Bounds & counterexamples",
+   "8": "Identity derivation studio",
+   "9": "Identity transformation studio",
+   "10": "Trigonometry readiness"
+  },
+  "skills": {
+   "M10.08.S01.M01": {
+    "title": "Locate the right angle and identify the hypotenuse",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S01.M02": {
+    "title": "Identify the side opposite the chosen acute angle",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S01.M03": {
+    "title": "Identify the adjacent leg excluding the hypotenuse",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S01.M04": {
+    "title": "Relabel opposite and adjacent when switching the reference angle",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S02.M01": {
+    "title": "Write sin as opposite/hypotenuse",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S02.M02": {
+    "title": "Write cos as adjacent/hypotenuse",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S02.M03": {
+    "title": "Write tan as opposite/adjacent",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S02.M04": {
+    "title": "Form cosec, sec and cot as reciprocal ratios",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S02.M05": {
+    "title": "Relate tan to sin/cos and cot to cos/sin",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S02.M06": {
+    "title": "Interpret sin A as function notation rather than multiplication",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S03.M01": {
+    "title": "Identify similar right triangles with the same acute angle",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S03.M02": {
+    "title": "Match their corresponding sides",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S03.M03": {
+    "title": "Cancel a common scale factor in a side ratio",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S03.M04": {
+    "title": "Conclude that each trigonometric ratio depends on the angle, not triangle size",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S04.M01": {
+    "title": "Represent a known ratio using a common scale factor",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S04.M02": {
+    "title": "Use Pythagoras to calculate the third side",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S04.M03": {
+    "title": "Select the positive side length for an acute triangle",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S04.M04": {
+    "title": "Substitute the sides into another ratio",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S04.M05": {
+    "title": "Simplify a fraction or surd ratio",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S05.M01": {
+    "title": "Use a half-equilateral triangle to obtain 30° and 60° ratios",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S05.M02": {
+    "title": "Use an isosceles right triangle to obtain 45° ratios",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S05.M03": {
+    "title": "Recall exact values for the six ratios at standard angles",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S05.M04": {
+    "title": "Distinguish exact radical values from decimal approximations",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S05.M05": {
+    "title": "Recognise undefined ratios caused by division by zero at 0° or 90°",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S06.M01": {
+    "title": "Match a given standard ratio with its permitted angle",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S06.M02": {
+    "title": "Use a stated angle interval to choose the appropriate value",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S06.M03": {
+    "title": "Translate a ratio involving A+B or A−B into an angle equation",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S06.M04": {
+    "title": "Solve the resulting linear equations for A and B",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S07.M01": {
+    "title": "Check that sin and cos of an acute angle lie between zero and one",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S07.M02": {
+    "title": "Recognise that tan can exceed one",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S07.M03": {
+    "title": "Describe sin increasing and cos decreasing over 0° to 90°",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S07.M04": {
+    "title": "Reject sin(A+B)=sin A+sin B using a counterexample",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S07.M05": {
+    "title": "Distinguish a trigonometric square from the ratio of a doubled angle",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S08.M01": {
+    "title": "Derive sin²A+cos²A=1 from a right triangle",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S08.M02": {
+    "title": "Derive 1+tan²A=sec²A by division where defined",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S08.M03": {
+    "title": "Derive 1+cot²A=cosec²A by division where defined",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S08.M04": {
+    "title": "Rearrange an identity to isolate a requested squared ratio",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S09.M01": {
+    "title": "Rewrite ratios using sin and cos when useful",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S09.M02": {
+    "title": "Factor a difference of squares",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S09.M03": {
+    "title": "Combine algebraic fractions with a common denominator",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S09.M04": {
+    "title": "Use a conjugate factor to simplify an expression",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S09.M05": {
+    "title": "Transform one side or both sides to a common expression",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S09.M06": {
+    "title": "Maintain the domain restrictions of denominators",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.08.S10.M01": {
+    "title": "Identify the hypotenuse in a right triangle",
+    "group": 10,
+    "scope": "Prerequisite support"
+   },
+   "M10.08.S10.M02": {
+    "title": "Use Pythagoras to find a missing side",
+    "group": 10,
+    "scope": "Prerequisite support"
+   },
+   "M10.08.S10.M03": {
+    "title": "Simplify ratios containing radicals",
+    "group": 10,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "9": {
+  "chapterId": "M10.09",
+  "groups": {
+   "1": "Scene annotation studio",
+   "2": "Angle bridge",
+   "3": "Choose the side pair",
+   "4": "Eye level & structures",
+   "5": "Linked-observation solver",
+   "6": "Movement & shadows",
+   "7": "Model validation",
+   "8": "Height-and-distance readiness"
+  },
+  "skills": {
+   "M10.09.S01.M01": {
+    "title": "Draw a horizontal line through the observer's eye",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S01.M02": {
+    "title": "Identify a line of sight",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S01.M03": {
+    "title": "Mark angle of elevation above the horizontal",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S01.M04": {
+    "title": "Mark angle of depression below the horizontal",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S01.M05": {
+    "title": "Label vertical heights and horizontal distances separately",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S02.M01": {
+    "title": "Use parallel horizontals to equate depression and elevation angles",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S02.M02": {
+    "title": "Locate the right angle made by vertical and horizontal lines",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S02.M03": {
+    "title": "Identify the relevant acute angle for each right triangle",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S03.M01": {
+    "title": "Identify the known and required side relative to the angle",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S03.M02": {
+    "title": "Choose sin, cos or tan from those two sides",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S03.M03": {
+    "title": "Substitute an exact standard-angle value",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S03.M04": {
+    "title": "Rearrange to obtain the unknown length",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S03.M05": {
+    "title": "Check the hypotenuse is the longest side",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S04.M01": {
+    "title": "Distinguish eye-level height difference from total height",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S04.M02": {
+    "title": "Subtract observer height before forming the triangle",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S04.M03": {
+    "title": "Add eye height back to report total object height",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S04.M04": {
+    "title": "Separate the height of a structure from the building beneath it",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S05.M01": {
+    "title": "Use a shared height or distance as one unknown",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S05.M02": {
+    "title": "Form one ratio equation for each observation",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S05.M03": {
+    "title": "Represent horizontal distance as a sum or difference according to the diagram",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S05.M04": {
+    "title": "Eliminate an unknown to find a height or distance",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S05.M05": {
+    "title": "Check the nearer observation has the larger elevation angle when height is fixed",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S06.M01": {
+    "title": "Relate a shadow length to height through tan",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S06.M02": {
+    "title": "Find a travelled distance from two observation positions",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S06.M03": {
+    "title": "Convert a solved distance to time when a speed is given",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S06.M04": {
+    "title": "Keep units consistent across the model",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S07.M01": {
+    "title": "Use the stated straight-rope or level-ground assumptions",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S07.M02": {
+    "title": "Retain exact radicals until an approximation is requested",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S07.M03": {
+    "title": "Check that all reported lengths are positive",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S07.M04": {
+    "title": "State the requested quantity rather than an intermediate segment",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.09.S08.M01": {
+    "title": "Recall sin, cos and tan at 30°, 45° and 60°",
+    "group": 8,
+    "scope": "Prerequisite support"
+   },
+   "M10.09.S08.M02": {
+    "title": "Solve a simple equation containing a radical coefficient",
+    "group": 8,
+    "scope": "Prerequisite support"
+   },
+   "M10.09.S08.M03": {
+    "title": "Convert centimetres and metres consistently",
+    "group": 8,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "10": {
+  "chapterId": "M10.10",
+  "groups": {
+   "1": "Line-circle contact",
+   "2": "Radius-tangent proof",
+   "3": "Tangent counts",
+   "4": "Equal-tangent proof",
+   "5": "Tangent lengths & angles",
+   "6": "Multi-tangent relations",
+   "7": "Circle readiness"
+  },
+  "skills": {
+   "M10.10.S01.M01": {
+    "title": "Count intersections of a line with a circle",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S01.M02": {
+    "title": "Identify a tangent, secant or non-intersecting line",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S01.M03": {
+    "title": "Identify the point of contact",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S01.M04": {
+    "title": "Recognise that a circle has infinitely many tangents",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S02.M01": {
+    "title": "Draw the radius to the point of contact",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S02.M02": {
+    "title": "Mark its right angle with the tangent",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S02.M03": {
+    "title": "Explain the theorem using the shortest distance from centre to line",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S02.M04": {
+    "title": "Recognise the converse condition for tangency stated in the text",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S03.M01": {
+    "title": "Recognise no tangent from an interior point",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S03.M02": {
+    "title": "Recognise one tangent at a point on the circle",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S03.M03": {
+    "title": "Recognise two tangents from an exterior point",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S03.M04": {
+    "title": "Distinguish the contact point from the exterior point",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S04.M01": {
+    "title": "Identify tangents drawn from the same exterior point",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S04.M02": {
+    "title": "Join the centre to contact points and the exterior point",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S04.M03": {
+    "title": "Use right-triangle congruence to justify equal tangent lengths",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S04.M04": {
+    "title": "Equate corresponding tangent segments to find unknowns",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S05.M01": {
+    "title": "Use a radius and tangent to form a right triangle",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S05.M02": {
+    "title": "Find tangent length, radius or centre-to-point distance",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S05.M03": {
+    "title": "Use the quadrilateral angle sum with two right angles",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S05.M04": {
+    "title": "Relate the angle between tangents to the central angle",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S05.M05": {
+    "title": "Use the centre-to-exterior line as the relevant angle bisector",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S06.M01": {
+    "title": "Assign equal tangent segments at each exterior vertex",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S06.M02": {
+    "title": "Express whole sides as sums of tangent segments",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S06.M03": {
+    "title": "Combine equalities to prove a perimeter or side relation",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S06.M04": {
+    "title": "Find an incircle-related length using the given diagram",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S06.M05": {
+    "title": "Present a chain of reasons for each claimed equality",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.10.S07.M01": {
+    "title": "Identify radius, chord and centre",
+    "group": 7,
+    "scope": "Prerequisite support"
+   },
+   "M10.10.S07.M02": {
+    "title": "Use Pythagoras in a right triangle",
+    "group": 7,
+    "scope": "Prerequisite support"
+   },
+   "M10.10.S07.M03": {
+    "title": "Apply triangle and quadrilateral angle sums",
+    "group": 7,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "11": {
+  "chapterId": "M10.11",
+  "groups": {
+   "1": "Name the circular region",
+   "2": "Arc and wire lengths",
+   "3": "Sector fractions",
+   "4": "Segment subtraction",
+   "5": "Clock, sweep and design models",
+   "6": "Units and approximations",
+   "7": "Circle readiness"
+  },
+  "skills": {
+   "M10.11.S01.M01": {
+    "title": "Distinguish an arc from its chord",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S01.M02": {
+    "title": "Distinguish a sector from a segment",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S01.M03": {
+    "title": "Identify minor and major regions",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S01.M04": {
+    "title": "Determine the corresponding central angle",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S02.M01": {
+    "title": "Use the fraction θ/360 of the full circumference",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S02.M02": {
+    "title": "Calculate arc length as (θ/360)×2πr",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S02.M03": {
+    "title": "Convert a diameter to radius before substitution",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S02.M04": {
+    "title": "Combine arc and straight lengths when required by a wire model",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S03.M01": {
+    "title": "Use the fraction θ/360 of the full circle area",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S03.M02": {
+    "title": "Calculate sector area as (θ/360)×πr²",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S03.M03": {
+    "title": "Use 90° for a quadrant and 180° for a semicircle",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S03.M04": {
+    "title": "Find a major sector using its angle or the complementary area",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S04.M01": {
+    "title": "Identify the triangle bounded by two radii and the chord",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S04.M02": {
+    "title": "Find the triangle's height or area using known geometry",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S04.M03": {
+    "title": "Subtract triangle area from the corresponding minor sector",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S04.M04": {
+    "title": "Obtain the major segment by subtracting the minor segment from the circle",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S04.M05": {
+    "title": "Keep the selected segment consistent with the diagram",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S05.M01": {
+    "title": "Convert elapsed clock time to a central angle",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S05.M02": {
+    "title": "Divide a full circle into equal sectors",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S05.M03": {
+    "title": "Model a rope or wiper sweep as a sector",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S05.M04": {
+    "title": "Add disjoint regions or subtract excluded regions",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S05.M05": {
+    "title": "Multiply an area by a per-unit-area cost",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S06.M01": {
+    "title": "Distinguish length units from square units",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S06.M02": {
+    "title": "Use the specified value of π",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S06.M03": {
+    "title": "Use a supplied radical approximation when requested",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S06.M04": {
+    "title": "Round only after the main calculation",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.11.S07.M01": {
+    "title": "Calculate circumference and area of a circle",
+    "group": 7,
+    "scope": "Prerequisite support"
+   },
+   "M10.11.S07.M02": {
+    "title": "Calculate triangle area from base and perpendicular height",
+    "group": 7,
+    "scope": "Prerequisite support"
+   },
+   "M10.11.S07.M03": {
+    "title": "Convert length units before squaring",
+    "group": 7,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "12": {
+  "chapterId": "M10.12",
+  "groups": {
+   "1": "Take the solid apart",
+   "2": "Which surfaces are exposed?",
+   "3": "Surface-area assembly",
+   "4": "Volume assembly and removal",
+   "5": "Capacity and displacement",
+   "6": "Units and physical checks",
+   "7": "Solid readiness"
+  },
+  "skills": {
+   "M10.12.S01.M01": {
+    "title": "Decompose a composite object into familiar solids",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S01.M02": {
+    "title": "Identify equal radii at joined circular faces",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S01.M03": {
+    "title": "Convert diameter to radius",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S01.M04": {
+    "title": "Separate total height from a component's height",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S01.M05": {
+    "title": "Calculate a cone's slant height from radius and vertical height",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S02.M01": {
+    "title": "Distinguish curved surface area from total surface area",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S02.M02": {
+    "title": "Exclude internal surfaces where two solids are joined",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S02.M03": {
+    "title": "Include a base only when it is exposed",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S02.M04": {
+    "title": "Include the curved surface created by a hollow or depression",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S02.M05": {
+    "title": "Subtract an opening from a flat face before adding its curved surface",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S03.M01": {
+    "title": "Select the correct formula for each exposed component",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S03.M02": {
+    "title": "Substitute matching component dimensions",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S03.M03": {
+    "title": "Add the exposed areas without double counting",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S03.M04": {
+    "title": "Handle a pair of hemispheres as the appropriate spherical surface",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S03.M05": {
+    "title": "Report the final result in square units",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S04.M01": {
+    "title": "Choose the volume formula for each component",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S04.M02": {
+    "title": "Add volumes of non-overlapping solid components",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S04.M03": {
+    "title": "Subtract a cavity or removed component",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S04.M04": {
+    "title": "Use hemispherical rather than full-sphere volume when appropriate",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S04.M05": {
+    "title": "Report the result in cubic units",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S05.M01": {
+    "title": "Distinguish outer volume from internal capacity",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S05.M02": {
+    "title": "Account for an unfilled or raised portion of a vessel",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S05.M03": {
+    "title": "Relate inserted solids to displaced liquid volume",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S05.M04": {
+    "title": "Find a count of identical small solids from a total volume condition",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S05.M05": {
+    "title": "Check that the count or capacity is physically admissible",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S06.M01": {
+    "title": "Convert all lengths to one unit before using formulas",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S06.M02": {
+    "title": "Choose area or volume according to the question",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S06.M03": {
+    "title": "Apply the specified π approximation",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S06.M04": {
+    "title": "Check that a removed volume is smaller than the original volume",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S06.M05": {
+    "title": "State any thin-wall assumption used by the problem",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.12.S07.M01": {
+    "title": "Recall surface-area formulas for the basic solids",
+    "group": 7,
+    "scope": "Prerequisite support"
+   },
+   "M10.12.S07.M02": {
+    "title": "Recall volume formulas for the basic solids",
+    "group": 7,
+    "scope": "Prerequisite support"
+   },
+   "M10.12.S07.M03": {
+    "title": "Distinguish a cone’s slant height from vertical height",
+    "group": 7,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "13": {
+  "chapterId": "M10.13",
+  "groups": {
+   "1": "Read grouped data",
+   "2": "Direct mean",
+   "3": "Assumed mean",
+   "4": "Step deviation",
+   "5": "Modal class and estimated mode",
+   "6": "Cumulative counts",
+   "7": "Locate and interpolate the median",
+   "8": "Continuous class boundaries",
+   "9": "Missing frequencies",
+   "10": "Choose a useful average",
+   "11": "Empirical relation · enrichment",
+   "12": "Frequency readiness"
+  },
+  "skills": {
+   "M10.13.S01.M01": {
+    "title": "Identify a class interval and its frequency",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S01.M02": {
+    "title": "Calculate a class mark as the interval midpoint",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S01.M03": {
+    "title": "Calculate the total frequency n",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S01.M04": {
+    "title": "Distinguish the number of classes from the number of observations",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S01.M05": {
+    "title": "Explain the midpoint assumption in a grouped-data mean",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S02.M01": {
+    "title": "Calculate f_i×x_i for each class",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S02.M02": {
+    "title": "Sum the frequency-weighted class marks",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S02.M03": {
+    "title": "Divide Σf_i x_i by Σf_i",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S02.M04": {
+    "title": "Interpret the resulting mean in the original variable's units",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S03.M01": {
+    "title": "Choose a convenient assumed mean a",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S03.M02": {
+    "title": "Calculate d_i=x_i−a",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S03.M03": {
+    "title": "Calculate and sum f_i d_i",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S03.M04": {
+    "title": "Use mean=a+Σf_i d_i/Σf_i",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S03.M05": {
+    "title": "Explain why changing a does not change the mean",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S04.M01": {
+    "title": "Choose a convenient nonzero scale h",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S04.M02": {
+    "title": "Calculate u_i=(x_i−a)/h",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S04.M03": {
+    "title": "Calculate and sum f_i u_i",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S04.M04": {
+    "title": "Recover mean=a+h×Σf_i u_i/Σf_i",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S04.M05": {
+    "title": "Choose a calculation method suited to the table",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S04.M06": {
+    "title": "Check that the three methods give the same mean",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S05.M01": {
+    "title": "Identify the modal class from its frequency",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S05.M02": {
+    "title": "Identify lower boundary l and class width h",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S05.M03": {
+    "title": "Identify f1, f0 and f2 in the correct neighbouring order",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S05.M04": {
+    "title": "Substitute into l+[(f1−f0)/(2f1−f0−f2)]h",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S05.M05": {
+    "title": "Distinguish the estimated mode from the modal-class midpoint",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S06.M01": {
+    "title": "Accumulate frequencies up to each upper boundary",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S06.M02": {
+    "title": "Interpret a less-than cumulative count",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S06.M03": {
+    "title": "Form a more-than cumulative count from total frequency",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S06.M04": {
+    "title": "Recover interval frequencies by subtracting successive cumulative counts",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S06.M05": {
+    "title": "Check that the final less-than count equals n",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S07.M01": {
+    "title": "Calculate n/2",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S07.M02": {
+    "title": "Locate the median class using cumulative frequency",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S07.M03": {
+    "title": "Identify l, h, f and cf before the median class",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S07.M04": {
+    "title": "Substitute into l+[(n/2−cf)/f]h",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S07.M05": {
+    "title": "Distinguish the median from the middle class mark",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S07.M06": {
+    "title": "Check that the estimate lies in the selected median interval",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S08.M01": {
+    "title": "Recognise gaps in inclusive class intervals",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S08.M02": {
+    "title": "Convert inclusive limits into continuous class boundaries",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S08.M03": {
+    "title": "Use the corrected lower boundary and width in the formula",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S08.M04": {
+    "title": "Avoid counting a shared boundary in two classes",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S09.M01": {
+    "title": "Use the total frequency to form a constraint",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S09.M02": {
+    "title": "Express a weighted sum or cumulative count with unknown frequencies",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S09.M03": {
+    "title": "Substitute a given mean or median to form another constraint",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S09.M04": {
+    "title": "Solve for the missing frequencies",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S09.M05": {
+    "title": "Check that frequencies are nonnegative integers and meet the total",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S10.M01": {
+    "title": "Interpret mean as a weighted average",
+    "group": 10,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S10.M02": {
+    "title": "Interpret median as a central position",
+    "group": 10,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S10.M03": {
+    "title": "Interpret mode as a most frequent or typical class-based value",
+    "group": 10,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S10.M04": {
+    "title": "Recognise sensitivity of the mean to extreme values",
+    "group": 10,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S10.M05": {
+    "title": "Choose a measure appropriate to the question being asked",
+    "group": 10,
+    "scope": "Curriculum core"
+   },
+   "M10.13.S11.M01": {
+    "title": "Rearrange 3 Median = Mode + 2 Mean to estimate a missing measure",
+    "group": 11,
+    "scope": "Source enrichment"
+   },
+   "M10.13.S11.M02": {
+    "title": "Describe the relation as empirical rather than an exact universal identity",
+    "group": 11,
+    "scope": "Source enrichment"
+   },
+   "M10.13.S12.M01": {
+    "title": "Read a two-column frequency table",
+    "group": 12,
+    "scope": "Prerequisite support"
+   },
+   "M10.13.S12.M02": {
+    "title": "Calculate products and totals accurately",
+    "group": 12,
+    "scope": "Prerequisite support"
+   },
+   "M10.13.S12.M03": {
+    "title": "Solve a linear equation involving an unknown frequency",
+    "group": 12,
+    "scope": "Prerequisite support"
+   }
+  }
+ },
+ "14": {
+  "chapterId": "M10.14",
+  "groups": {
+   "1": "What is equally likely?",
+   "2": "Build an event",
+   "3": "Read the event wording",
+   "4": "Complements and bounds",
+   "5": "Cards and collections",
+   "6": "Remove one, update the bag",
+   "7": "Ordered coin and die outcomes",
+   "8": "Two-dice sum distribution",
+   "9": "Trials versus theory",
+   "10": "Uniform regions · enrichment",
+   "11": "Counting readiness"
+  },
+  "skills": {
+   "M10.14.S01.M01": {
+    "title": "Describe an experiment and its elementary outcomes",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S01.M02": {
+    "title": "State the fair-coin or fair-die assumption",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S01.M03": {
+    "title": "Distinguish equally likely individual objects from unequal colour categories",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S01.M04": {
+    "title": "Explain why two named possibilities need not have probability 1/2 each",
+    "group": 1,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S02.M01": {
+    "title": "List all equally likely outcomes without omissions",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S02.M02": {
+    "title": "Identify outcomes favourable to an event",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S02.M03": {
+    "title": "Count favourable and total outcomes separately",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S02.M04": {
+    "title": "Calculate favourable count divided by total count",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S02.M05": {
+    "title": "Simplify or convert the probability without changing its value",
+    "group": 2,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S03.M01": {
+    "title": "Distinguish greater than from greater than or equal to",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S03.M02": {
+    "title": "Distinguish at least, at most and exactly",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S03.M03": {
+    "title": "Identify prime, odd, square or divisible-number outcomes",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S03.M04": {
+    "title": "Exclude endpoints when the wording specifies strictly between",
+    "group": 3,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S04.M01": {
+    "title": "Recognise an impossible event as probability zero",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S04.M02": {
+    "title": "Recognise a certain event as probability one",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S04.M03": {
+    "title": "Reject probabilities outside [0,1]",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S04.M04": {
+    "title": "Find P(not E)=1−P(E)",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S04.M05": {
+    "title": "Explain why an event and its complement exhaust the sample space",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S04.M06": {
+    "title": "Check the probabilities of all elementary outcomes add to one",
+    "group": 4,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S05.M01": {
+    "title": "Distinguish 52 cards, four suits and thirteen ranks",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S05.M02": {
+    "title": "Identify face cards as jack, queen and king",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S05.M03": {
+    "title": "Count an intersection such as red face cards",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S05.M04": {
+    "title": "Count a union of disjoint acceptable categories",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S05.M05": {
+    "title": "Use individual balls, discs or names as equally likely outcomes",
+    "group": 5,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S06.M01": {
+    "title": "Decrease the total when an object is not replaced",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S06.M02": {
+    "title": "Decrease the favourable count only when a favourable object was removed",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S06.M03": {
+    "title": "Use the explicitly stated first-draw outcome to describe the remaining collection",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S06.M04": {
+    "title": "Calculate the next-draw probability from the updated counts",
+    "group": 6,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S07.M01": {
+    "title": "Distinguish ordered outcomes such as HT and TH",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S07.M02": {
+    "title": "List four outcomes for two fair coin tosses",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S07.M03": {
+    "title": "List eight outcomes for three fair coin tosses",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S07.M04": {
+    "title": "Construct the 6×6 ordered-pair sample space for two dice",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S07.M05": {
+    "title": "Count outcomes for at least one occurrence using direct counting or a complement",
+    "group": 7,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S08.M01": {
+    "title": "Find all ordered pairs yielding a specified sum",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S08.M02": {
+    "title": "Count swapped unequal pairs as distinct outcomes",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S08.M03": {
+    "title": "Explain why eleven possible sums are not eleven equally likely outcomes",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S08.M04": {
+    "title": "Calculate an impossible or certain sum-event probability",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S08.M05": {
+    "title": "Build the probability distribution for sums 2 through 12",
+    "group": 8,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S09.M01": {
+    "title": "Calculate an observed proportion from trial counts",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S09.M02": {
+    "title": "Calculate a theoretical probability from assumptions",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S09.M03": {
+    "title": "Explain why a short-run result may differ from theoretical probability",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S09.M04": {
+    "title": "Recognise that more trials may bring proportions closer without guaranteeing an exact match",
+    "group": 9,
+    "scope": "Curriculum core"
+   },
+   "M10.14.S10.M01": {
+    "title": "State the assumption of uniform selection over a continuous region",
+    "group": 10,
+    "scope": "Source enrichment"
+   },
+   "M10.14.S10.M02": {
+    "title": "Use favourable length divided by total length",
+    "group": 10,
+    "scope": "Source enrichment"
+   },
+   "M10.14.S10.M03": {
+    "title": "Use favourable area divided by total area",
+    "group": 10,
+    "scope": "Source enrichment"
+   },
+   "M10.14.S10.M04": {
+    "title": "Distinguish a continuous region from a finite list of equally likely outcomes",
+    "group": 10,
+    "scope": "Source enrichment"
+   },
+   "M10.14.S11.M01": {
+    "title": "List objects without double counting",
+    "group": 11,
+    "scope": "Prerequisite support"
+   },
+   "M10.14.S11.M02": {
+    "title": "Simplify a fraction and convert it to a decimal",
+    "group": 11,
+    "scope": "Prerequisite support"
+   },
+   "M10.14.S11.M03": {
+    "title": "Read strict and inclusive inequality language",
+    "group": 11,
+    "scope": "Prerequisite support"
+   }
+  }
+ }
+}

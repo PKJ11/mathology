@@ -27,4 +27,5 @@ export function getChapter(slug: string): Chapter | undefined {
 }
 
 export const chapterSlug = (c: Chapter) => `chapter-${c.number}`;
-export const chapterSrc = (c: Chapter) => `/chapters/${chapterSlug(c)}.html`;
+// Served by app/lab/[chapter]/route.ts with the interaction tracker injected
+export const chapterSrc = (c: Chapter) => `/lab/${chapterSlug(c)}`;

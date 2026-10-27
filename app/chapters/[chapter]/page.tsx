@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { requireUser } from "@/lib/auth";
+import { AccountMenu } from "../../account-menu";
 import styles from "../chapters.module.css";
 import { chapters, chapterSlug, chapterSrc, getChapter } from "../chapters";
 
@@ -22,6 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ChapterPage({ params }: Props) {
   const chapter = getChapter((await params).chapter);
   if (!chapter) notFound();
+  await requireUser(`/chapters/${chapterSlug(chapter)}`);
 
   const prev = chapters.find((c) => c.number === chapter.number - 1);
   const next = chapters.find((c) => c.number === chapter.number + 1);
@@ -45,6 +48,7 @@ export default async function ChapterPage({ params }: Props) {
             <span className={styles.disabled}>Next ›</span>
           )}
         </span>
+        <AccountMenu tone="bar" />
       </nav>
 
       <iframe

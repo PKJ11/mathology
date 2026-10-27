@@ -28,6 +28,13 @@
   text-align: center;
 }
 
+.account {
+  position: absolute;
+  top: max(12px, calc(28 * var(--u)));
+  right: max(16px, calc(52 * var(--u)));
+  z-index: 2;
+}
+
 .logo {
   display: block;
   width: calc(158 * var(--u));

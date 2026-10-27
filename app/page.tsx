@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AccountMenu } from "./account-menu";
 import { Backdrop, Decor, type DecorItem } from "./decor";
 import styles from "./home.module.css";
 
@@ -37,6 +38,9 @@ export default function HomePage() {
   return (
     <main className={styles.hero}>
       <Backdrop />
+      <div className={styles.account}>
+        <AccountMenu />
+      </div>
       <div className={styles.stage}>
         <svg className={`${styles.shape} ${styles.desktopOnly}`} viewBox="0 0 2302 1080" preserveAspectRatio="none" aria-hidden="true">
           <ellipse cx="575" cy="944" rx="285" ry="24" className={styles.shadow} />

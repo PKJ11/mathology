@@ -181,3 +181,10 @@
     font-size: max(14px, calc(28 * var(--u)));
   }
 }
+
+.account {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 5;
+}

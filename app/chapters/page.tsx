@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Backdrop, Decor, type DecorItem } from "../decor";
+import { AccountMenu } from "../account-menu";
 import styles from "./chapters.module.css";
 import { chapters, chapterSlug } from "./chapters";
 
@@ -53,6 +54,9 @@ export default function ChaptersPage() {
       <Backdrop />
       <div className={styles.stage}>
         <section className={styles.panel}>
+          <div className={styles.account}>
+            <AccountMenu />
+          </div>
           <Link href="/" className={styles.logo}>
             <img src="/logo-color.svg" alt="Mathology by Logicology" />
           </Link>

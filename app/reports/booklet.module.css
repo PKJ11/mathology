@@ -1,0 +1,758 @@
+/* Report page: a desk with a booklet on it. The booklet is a printed object, so its pages
+   keep one paper palette in both themes; the desk follows the site theme. */
+
+.desk {
+  --paper: #fffdf8;
+  --paper-edge: #f1ece0;
+  --ink: #2a292b;
+  --ink-2: #57565a;
+  --ink-3: #8a8990;
+  --rule: rgba(65, 64, 66, 0.14);
+  --series: #2a78d6;
+  --track: #e8edf4;
+
+  --good: #0ca30c;
+  --warning: #fab219;
+  --serious: #ec835a;
+
+  min-height: 100dvh;
+  padding: 0 16px 40px;
+  background:
+    radial-gradient(ellipse at 50% 35%, rgba(107, 191, 235, 0.18), transparent 60%),
+    var(--bg);
+  color: var(--text);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 14px 0;
+}
+
+.top h1 {
+  flex: 1;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.back {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.back:hover {
+  color: var(--brand-red);
+}
+
+/* ------------------------------------------------------------------ booklet */
+
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+  /* Fit a two-page spread (2 × 460 : 650) within the viewport height */
+  width: min(100%, calc((100dvh - 190px) * 1.415));
+  min-width: min(100%, 300px);
+  margin: 0 auto;
+  padding: 12px 0 8px;
+}
+
+.book {
+  width: 100%;
+  max-width: 1240px;
+  filter: drop-shadow(0 24px 36px rgba(20, 18, 30, 0.22));
+}
+
+.loading {
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.controls button {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled) {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.counter {
+  min-width: 9em;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.tip {
+  margin: 8px 0 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------ pages */
+
+.page {
+  container-type: size;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--paper-edge);
+}
+
+.inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 8cqw 8cqw 10cqw;
+  font-size: clamp(7px, 3cqw, 17px);
+  line-height: 1.45;
+}
+
+.folio {
+  position: absolute;
+  bottom: 4.5cqw;
+  font-size: clamp(7px, 2.6cqw, 14px);
+  color: var(--ink-3);
+}
+
+.folioLeft {
+  left: 8cqw;
+}
+
+.folioRight {
+  right: 8cqw;
+}
+
+.heading {
+  margin-bottom: 1.2em;
+}
+
+.heading h2,
+.chapterBand h2 {
+  margin: 0.1em 0 0;
+  font-size: 1.9em;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.kicker {
+  font-size: 0.78em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brand-red);
+}
+
+.prose p,
+.prose li {
+  margin: 0 0 0.7em;
+}
+
+.prose ul {
+  margin: 0 0 0.8em;
+  padding-left: 1.2em;
+}
+
+.muted {
+  color: var(--ink-2);
+}
+
+.caption {
+  margin: -0.6em 0 1em;
+  font-size: 0.85em;
+  color: var(--ink-2);
+}
+
+.footnote {
+  margin: auto 0 0;
+  padding-top: 0.8em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8em;
+  color: var(--ink-2);
+}
+
+/* Stat tiles */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7em;
+  margin: 0.4em 0 1em;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0.75em 0.85em;
+  border-radius: 0.7em;
+  background: #f5f2ea;
+}
+
+.stat strong {
+  font-size: 1.65em;
+  font-weight: 900;
+  line-height: 1.1;
+}
+
+.stat span {
+  font-weight: 600;
+}
+
+.stat small {
+  font-size: 0.8em;
+  color: var(--ink-2);
+}
+
+/* Chapter accuracy bars (single series) */
+.bars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.42em;
+}
+
+.bars li {
+  display: grid;
+  grid-template-columns: 46% 1fr;
+  align-items: center;
+  gap: 0.6em;
+  font-size: 0.86em;
+}
+
+.barLabel {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.barLabel b {
+  display: inline-block;
+  width: 1.6em;
+  color: var(--ink-3);
+}
+
+.barTrack {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 1.25em;
+  padding: 0.2em 0;
+  /* hit target taller than the mark */
+}
+
+.barFill {
+  height: 0.62em;
+  min-width: 2px;
+  border-radius: 0 4px 4px 0;
+  background: var(--series);
+}
+
+.barValue {
+  margin-left: 0.45em;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.barValue small {
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.barEmpty {
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+/* Activity calendar (sequential blue) */
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.35em;
+  margin-bottom: 0.6em;
+}
+
+.day {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: 0.3em;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.04);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.3em;
+  margin-bottom: 1em;
+  font-size: 0.75em;
+  color: var(--ink-2);
+}
+
+.legend i {
+  width: 1em;
+  height: 1em;
+  border-radius: 0.2em;
+}
+
+/* Tables */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+  font-size: 0.9em;
+}
+
+.table th {
+  padding: 0.3em 0.4em 0.4em 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.table td {
+  padding: 0.45em 0.4em 0.45em 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.cellBar {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.meter {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: 5.5em;
+  height: 0.5em;
+  border-radius: 4px;
+  background: var(--track);
+}
+
+.meter > span {
+  display: block;
+  height: 100%;
+  min-width: 2px;
+  border-radius: 4px;
+  background: var(--series);
+}
+
+/* Cards (mistakes, drafts, decisions) */
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75em;
+}
+
+.cards li {
+  padding: 0.7em 0.85em;
+  border-left: 3px solid var(--brand-blue);
+  border-radius: 0 0.6em 0.6em 0;
+  background: #f7f5ef;
+}
+
+.cards p {
+  margin: 0.25em 0 0;
+  overflow-wrap: anywhere;
+}
+
+.cardMeta {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+
+.cardPrompt {
+  font-weight: 600;
+}
+
+.mark {
+  display: inline-block;
+  min-width: 4em;
+  color: var(--ink-3);
+  font-size: 0.85em;
+}
+
+.quote {
+  margin: 0.4em 0 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+/* Contents */
+.toc {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.toc li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  padding: 0.3em 0;
+}
+
+.toc span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.toc i {
+  flex: 1;
+  border-bottom: 1px dotted var(--ink-3);
+}
+
+.toc b {
+}
+
+/* Chapter pages */
+.chapterBand {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-bottom: 1em;
+}
+
+.chapterBand h2 {
+  font-size: 1.5em;
+}
+
+.chapterNo {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 2.4em;
+  height: 2.4em;
+  border-radius: 0.6em;
+  background: var(--brand-yellow);
+  color: var(--brand-ink);
+  font-size: 1.3em;
+  font-weight: 900;
+}
+
+.miniStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.35em 0.8em;
+  margin-bottom: 1em;
+  padding: 0.6em 0.8em;
+  border-radius: 0.6em;
+  background: #f5f2ea;
+  font-size: 0.8em;
+  color: var(--ink-2);
+}
+
+.miniStats b {
+  display: block;
+  color: var(--ink);
+  font-size: 1.25em;
+}
+
+.skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+}
+
+.skills li {
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid var(--rule);
+}
+
+.skillHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.6em;
+}
+
+.skillTitle {
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.skillFacts {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-top: 0.3em;
+  font-size: 0.78em;
+  color: var(--ink-2);
+}
+
+/* Status chips: colour is on the icon only, the label carries the meaning */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  flex: none;
+  padding: 0.15em 0.55em 0.15em 0.2em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  font-size: 0.72em;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--ink);
+}
+
+.chip i {
+  display: grid;
+  place-items: center;
+  width: 1.4em;
+  height: 1.4em;
+  border-radius: 50%;
+  font-style: normal;
+  color: #fff;
+}
+
+.good i {
+  background: var(--good);
+}
+
+.warning i {
+  background: var(--warning);
+  color: var(--ink);
+}
+
+.serious i {
+  background: var(--serious);
+}
+
+.neutral i {
+  background: #c9c8cc;
+  color: var(--ink);
+}
+
+/* Notes page */
+.lines {
+  flex: 1;
+  background: repeating-linear-gradient(to bottom, transparent 0 1.9em, var(--rule) 1.9em calc(1.9em + 1px));
+}
+
+/* Covers */
+.hard {
+  box-shadow: none;
+}
+
+.cover,
+.backCover {
+  background:
+    radial-gradient(circle at 80% 15%, rgba(253, 210, 1, 0.35), transparent 35%),
+    radial-gradient(circle at 15% 85%, rgba(107, 191, 235, 0.4), transparent 40%),
+    var(--brand-red);
+  color: #fff;
+}
+
+.backCover {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(107, 191, 235, 0.35), transparent 40%),
+    var(--brand-ink);
+}
+
+.coverInner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10cqw;
+  font-size: clamp(8px, 3.2cqw, 18px);
+}
+
+.coverInner h1 {
+  margin: 0.15em 0 0.3em;
+  font-size: 2.6em;
+  font-weight: 900;
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+}
+
+.coverInner p {
+  margin: 0 0 0.4em;
+}
+
+.coverLogo {
+  width: 32cqw;
+  margin-bottom: auto;
+}
+
+.backLogo {
+  width: 40cqw;
+  margin: 0 auto 1em;
+}
+
+.backCover .coverInner {
+  align-items: center;
+  text-align: center;
+}
+
+.coverKicker {
+  font-size: 0.9em;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.coverPeriod {
+  margin-top: auto !important;
+  opacity: 0.85;
+  font-size: 0.9em;
+}
+
+/* Hover tooltips (CSS only, so they also work on the flipping copies) */
+.page [data-tip] {
+  position: relative;
+}
+
+.page [data-tip]:hover::after {
+  content: attr(data-tip);
+  position: absolute;
+  z-index: 5;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: 22em;
+  padding: 0.4em 0.6em;
+  border-radius: 0.4em;
+  background: var(--brand-ink);
+  color: #fff;
+  font-size: 0.85em;
+  font-weight: 500;
+  line-height: 1.3;
+  pointer-events: none;
+}
+
+.barTrack[data-tip]:hover::after {
+  left: 0;
+  transform: none;
+}
+
+/* ------------------------------------------------------------------ roster */
+
+.roster {
+  max-width: 900px;
+  margin: 24px auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  overflow-x: auto;
+}
+
+.roster table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.roster th,
+.roster td {
+  padding: 10px 8px;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+
+.roster th {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.roster td a {
+  color: var(--brand-red);
+  font-weight: 700;
+}
+
+.roster td small {
+  display: block;
+  color: var(--text-muted);
+}
+
+/* ------------------------------------------------------------------ print */
+
+.source[hidden] {
+  display: none;
+}
+
+@media print {
+  .top,
+  .stage,
+  .controls,
+  .tip,
+  .loading {
+    display: none !important;
+  }
+
+  .desk {
+    padding: 0;
+    background: #fff;
+  }
+
+  .source[hidden] {
+    display: block;
+  }
+
+  .source .page {
+    width: 148mm;
+    height: 210mm;
+    margin: 0 auto;
+    break-after: page;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
