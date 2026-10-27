@@ -11,6 +11,15 @@ export type AuthFormState = {
 } | undefined;
 
 const field = (form: FormData, key: string, max = 200) => String(form.get(key) ?? "").trim().slice(0, max);
+
+/** The database or session store could not be reached: log the real cause, show a calm message. */
+function unavailable(action: string, err: unknown, values: Record<string, string>): AuthFormState {
+  console.error(`[auth] ${action} failed:`, err);
+  return {
+    message: "We couldn't reach the Mathology server just now. Please try again in a moment.",
+    values,
+  };
+}
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function register(_state: AuthFormState, form: FormData): Promise<AuthFormState> {
@@ -28,9 +37,8 @@ export async function register(_state: AuthFormState, form: FormData): Promise<A
     errors.password = "Use at least 8 characters with a letter and a number.";
   if (Object.keys(errors).length) return { errors, values };
 
-  const { users } = await collections();
-  let userId;
   try {
+    const { users } = await collections();
     const result = await users.insertOne({
       email,
       name,
@@ -42,13 +50,13 @@ export async function register(_state: AuthFormState, form: FormData): Promise<A
       createdAt: new Date(),
       lastLoginAt: new Date(),
     } as never);
-    userId = result.insertedId;
+    await createSession(result.insertedId);
   } catch (err) {
     if (isDuplicateKey(err)) return { errors: { email: "An account with this email already exists." }, values };
-    throw err;
+    return unavailable("register", err, values);
   }
 
-  await createSession(userId);
+  // Outside the try: redirect() works by throwing
   redirect(safeNext(form.get("next")));
 }
 
@@ -58,13 +66,18 @@ export async function login(_state: AuthFormState, form: FormData): Promise<Auth
   const values = { email };
   if (!email || !password) return { message: "Enter your email and password.", values };
 
-  const { users } = await collections();
-  const user = await users.findOne({ email });
-  if (!user || !(await verifyPassword(password, user.passwordHash)))
-    return { message: "That email and password don't match.", values };
+  try {
+    const { users } = await collections();
+    const user = await users.findOne({ email });
+    if (!user || !(await verifyPassword(password, user.passwordHash)))
+      return { message: "That email and password don't match.", values };
 
-  await users.updateOne({ _id: user._id }, { $set: { lastLoginAt: new Date() } });
-  await createSession(user._id);
+    await users.updateOne({ _id: user._id }, { $set: { lastLoginAt: new Date() } });
+    await createSession(user._id);
+  } catch (err) {
+    return unavailable("login", err, values);
+  }
+
   redirect(safeNext(form.get("next")));
 }
 

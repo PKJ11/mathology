@@ -167,7 +167,7 @@ function client(): Promise<MongoClient> {
   // Opt in to specific resolvers with e.g. MONGODB_DNS_SERVERS="8.8.8.8,1.1.1.1".
   const dnsServers = process.env.MONGODB_DNS_SERVERS?.split(",").map((s) => s.trim()).filter(Boolean);
   if (dnsServers?.length) setServers(dnsServers);
-  globalForMongo.mathologyMongo ??= new MongoClient(uri, { appName: "mathology" })
+  globalForMongo.mathologyMongo ??= new MongoClient(uri, { appName: "mathology", serverSelectionTimeoutMS: 10_000 })
     .connect()
     .catch((err) => {
       globalForMongo.mathologyMongo = undefined;
