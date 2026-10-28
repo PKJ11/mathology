@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getCurrentUser } from "@/lib/auth";
+import { canViewOthers, getCurrentUser } from "@/lib/auth";
 import { logout } from "./actions/auth";
 import styles from "./account-menu.module.css";
 
@@ -13,6 +13,11 @@ export async function AccountMenu({ tone = "light" }: { tone?: "light" | "bar" }
           <span className={styles.name} title={user.email}>
             {user.name.split(" ")[0]}
           </span>
+          {canViewOthers(user.role) && (
+            <Link href="/demo-registrations" className={styles.link}>
+              Demo bookings
+            </Link>
+          )}
           <Link href="/reports" className={styles.report}>
             My report
           </Link>
