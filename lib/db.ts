@@ -151,6 +151,20 @@ export type ChapterStateDoc = {
   updatedAt: Date;
 };
 
+/** Temporary: a free demo-class booking, keyed by the OTP-verified phone and the student's name. */
+export type DemoRegistrationDoc = {
+  _id?: ObjectId;
+  phone: string; // E.164, from the verified Firebase token
+  nameKey: string;
+  name: string;
+  grade: string;
+  school: string;
+  date: string; // YYYY-MM-DD, India time
+  slot: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 // ---------------------------------------------------------------------------
 // Connection
 // ---------------------------------------------------------------------------
@@ -197,6 +211,7 @@ export async function collections() {
     learningSessions: db.collection<LearningSessionDoc>("learning_sessions"),
     drafts: db.collection<DraftDoc>("drafts"),
     chapterState: db.collection<ChapterStateDoc>("chapter_state"),
+    demoRegistrations: db.collection<DemoRegistrationDoc>("demo_registrations"),
   };
 }
 
@@ -225,6 +240,9 @@ async function ensureIndexes(db: Db) {
     db.collection("drafts").createIndex({ userId: 1, chapter: 1, group: 1, savedAt: -1 }),
 
     db.collection("chapter_state").createIndex({ userId: 1, chapter: 1, key: 1 }, { unique: true }),
+
+    db.collection("demo_registrations").createIndex({ phone: 1, nameKey: 1 }, { unique: true }),
+    db.collection("demo_registrations").createIndex({ date: 1, slot: 1 }),
   ]);
 }
 

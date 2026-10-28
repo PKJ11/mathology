@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AccountMenu } from "./account-menu";
+import { DemoClass } from "./demo-class";
 import { Backdrop, Decor, type DecorItem } from "./decor";
 import styles from "./home.module.css";
 
@@ -77,6 +78,7 @@ export default function HomePage() {
             <Link href="/chapters" className={styles.button}>
               Class 10 Labs
             </Link>
+            <DemoClass className={`${styles.button} ${styles.demo}`} />
           </nav>
         </div>
       </div>

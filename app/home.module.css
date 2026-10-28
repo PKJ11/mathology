@@ -98,6 +98,7 @@
 .actions {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   gap: calc(92 * var(--u));
   margin-top: calc(56 * var(--u));
 }
@@ -131,6 +132,15 @@
 .button:focus-visible {
   outline: 3px solid var(--brand-ink);
   outline-offset: 3px;
+}
+
+/* Temporary: demo-class registration, styled to stand out from the other two */
+.demo {
+  border: 0;
+  background: var(--brand-red);
+  color: #fff;
+  font-family: inherit;
+  cursor: pointer;
 }
 
 /* Phones: switch to the 800 × 1700 portrait artboard */
