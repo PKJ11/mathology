@@ -43,7 +43,7 @@ export type ChapterReport = {
 };
 
 export type ReportData = {
-  student: { name: string; email: string; school: string | null; className: string | null; grade: string };
+  student: { name: string; email: string | null; school: string | null; className: string | null; grade: string };
   generatedAt: string;
   timezone: string;
   period: { from: string | null; to: string | null };
@@ -273,7 +273,7 @@ export async function buildReport(userId: ObjectId): Promise<ReportData | null> 
   }
 
   return {
-    student: { name: user.name, email: user.email, school: user.school, className: user.className, grade: user.grade },
+    student: { name: user.name, email: user.email ?? null, school: user.school, className: user.className, grade: user.grade },
     generatedAt: new Date().toISOString(),
     timezone: TZ,
     period: { from: first?.toISOString() ?? null, to: last?.toISOString() ?? null },
@@ -335,7 +335,10 @@ export async function buildReport(userId: ObjectId): Promise<ReportData | null> 
 export async function listStudents() {
   const { users, learningSessions } = await collections();
   const list = await users
-    .find({ role: "student" }, { projection: { name: 1, email: 1, school: 1, className: 1, createdAt: 1 } })
+    .find(
+      { role: "student" },
+      { projection: { name: 1, email: 1, phone: 1, school: 1, className: 1, grade: 1, city: 1, createdAt: 1 } },
+    )
     .sort({ createdAt: -1 })
     .limit(500)
     .toArray();
@@ -347,9 +350,11 @@ export async function listStudents() {
     .map((u) => ({
       id: u._id.toHexString(),
       name: u.name,
-      email: u.email,
+      contact: u.phone ?? u.email ?? null,
       school: u.school,
-      className: u.className,
+      city: u.city ?? null,
+      // Phone sign-ups give a grade; older email accounts gave a class / section
+      className: u.className ?? (u.grade ? `Grade ${u.grade}` : null),
       lastActive: lastSeen.get(u._id.toHexString())?.toISOString() ?? null,
     }))
     .sort((a, b) => (b.lastActive ?? "").localeCompare(a.lastActive ?? ""));

@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Auth, ConfirmationResult, RecaptchaVerifier } from "firebase/auth";
 import { registerDemo, type DemoField } from "./actions/demo";
+import { usePhoneOtp } from "./use-phone-otp";
 import {
   DEMO_DATES,
   DEMO_GRADES,
@@ -13,10 +13,10 @@ import {
   isSlotOpen,
   slotLabel,
 } from "@/lib/demo-class";
+import { isIndianMobile } from "@/lib/student-profile";
 import styles from "./demo-class.module.css";
 
 const SEEN_KEY = "mth_demo_popup_seen";
-const RESEND_SECONDS = 30;
 
 type Field = DemoField | "phone";
 type Values = { name: string; grade: string; school: string; date: string; slot: string; phone: string; otp: string };
@@ -24,46 +24,15 @@ type Booked = { name: string; grade: string; date: string; slot: string; phone: 
 
 const EMPTY: Values = { name: "", grade: "", school: "", date: "", slot: "", phone: "", otp: "" };
 
-declare global {
-  interface Window {
-    grecaptcha?: { reset: (widgetId?: number) => void };
-  }
-}
-
-const firebaseMessage = (err: unknown) => {
-  const code = (err as { code?: string })?.code ?? "";
-  switch (code) {
-    case "auth/invalid-phone-number":
-      return { field: "phone" as const, text: "That phone number doesn't look right." };
-    case "auth/invalid-verification-code":
-      return { field: "otp" as const, text: "That OTP is incorrect. Check the SMS and try again." };
-    case "auth/code-expired":
-      return { field: "otp" as const, text: "That OTP has expired. Request a new one." };
-    case "auth/too-many-requests":
-    case "auth/quota-exceeded":
-      return { field: null, text: "Too many attempts from this device. Please wait a while and try again." };
-    case "auth/network-request-failed":
-      return { field: null, text: "No connection. Check your internet and try again." };
-    default:
-      console.error("[demo] phone verification failed:", err);
-      return { field: null, text: "We couldn't send or check the OTP just now. Please try again." };
-  }
-};
-
 /** "Register for demo class" button plus the registration popup, which also opens once on a visitor's first visit. */
 export function DemoClass({ className }: { className?: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
-  const recaptchaBox = useRef<HTMLDivElement>(null);
-  const auth = useRef<Auth | null>(null);
-  const verifier = useRef<RecaptchaVerifier | null>(null);
-  const confirmation = useRef<ConfirmationResult | null>(null);
+  const otp = usePhoneOtp();
 
   const [running] = useState(() => demoIsRunning());
   const [values, setValues] = useState<Values>(EMPTY);
   const [errors, setErrors] = useState<Partial<Record<Field, string>>>({});
   const [message, setMessage] = useState<string | null>(null);
-  const [otpSent, setOtpSent] = useState(false);
-  const [resendIn, setResendIn] = useState(0);
   const [busy, setBusy] = useState<"send" | "verify" | null>(null);
   const [booked, setBooked] = useState<Booked | null>(null);
 
@@ -88,14 +57,6 @@ export function DemoClass({ className }: { className?: string }) {
     return () => clearTimeout(timer);
   }, [running]);
 
-  useEffect(() => {
-    if (resendIn <= 0) return;
-    const timer = setTimeout(() => setResendIn((s) => s - 1), 1000);
-    return () => clearTimeout(timer);
-  }, [resendIn]);
-
-  useEffect(() => () => verifier.current?.clear(), []);
-
   if (!running) return null;
 
   const set = (key: keyof Values, value: string) => {
@@ -111,41 +72,24 @@ export function DemoClass({ className }: { className?: string }) {
     if (values.school.trim().length < 2) e.school = "Enter the school name.";
     if (!values.date) e.date = "Choose a date.";
     if (!values.slot) e.slot = "Choose a time.";
-    if (!/^[6-9]\d{9}$/.test(values.phone)) e.phone = "Enter a 10-digit mobile number.";
+    if (!isIndianMobile(values.phone)) e.phone = "Enter a 10-digit mobile number.";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
 
-  const resetRecaptcha = async () => {
-    try {
-      const id = await verifier.current?.render();
-      window.grecaptcha?.reset(id);
-    } catch {
-      verifier.current = null;
-    }
+  const showProblem = (p: { field: "phone" | "otp" | null; message: string }) => {
+    if (p.field) setErrors((e) => ({ ...e, [p.field!]: p.message }));
+    else setMessage(p.message);
   };
 
   const sendOtp = async () => {
     if (!validate()) return;
     setBusy("send");
     setMessage(null);
-    try {
-      const { firebaseAuth } = await import("@/lib/firebase-client");
-      const { RecaptchaVerifier, signInWithPhoneNumber } = await import("firebase/auth");
-      auth.current ??= firebaseAuth();
-      verifier.current ??= new RecaptchaVerifier(auth.current, recaptchaBox.current!, { size: "invisible" });
-      confirmation.current = await signInWithPhoneNumber(auth.current, `+91${values.phone}`, verifier.current);
-      setOtpSent(true);
-      setResendIn(RESEND_SECONDS);
-      setValues((v) => ({ ...v, otp: "" }));
-    } catch (err) {
-      const { field, text } = firebaseMessage(err);
-      if (field) setErrors((e) => ({ ...e, [field]: text }));
-      else setMessage(text);
-      await resetRecaptcha();
-    } finally {
-      setBusy(null);
-    }
+    const sent = await otp.send(values.phone);
+    if (sent.ok) setValues((v) => ({ ...v, otp: "" }));
+    else showProblem(sent);
+    setBusy(null);
   };
 
   const verifyAndRegister = async () => {
@@ -154,31 +98,20 @@ export function DemoClass({ className }: { className?: string }) {
       setErrors((e) => ({ ...e, otp: "Enter the 6-digit OTP." }));
       return;
     }
-    if (!confirmation.current) return;
     setBusy("verify");
     setMessage(null);
     try {
-      let idToken: string;
-      try {
-        const credential = await confirmation.current.confirm(values.otp);
-        idToken = await credential.user.getIdToken();
-      } catch (err) {
-        const { field, text } = firebaseMessage(err);
-        if (field) setErrors((e) => ({ ...e, [field]: text }));
-        else setMessage(text);
-        return;
-      }
+      const checked = await otp.confirm(values.otp);
+      if (!checked.ok) return showProblem(checked);
 
-      const result = await registerDemo({ ...values, idToken });
+      const result = await registerDemo({ ...values, idToken: checked.idToken });
       if (!result.ok) {
         setErrors(result.errors ?? {});
         setMessage(result.message ?? null);
         return;
       }
       setBooked({ ...values, phone: result.phone, updated: result.updated });
-      // The Firebase sign-in only proved the phone number; Mathology accounts are separate
-      const { signOut } = await import("firebase/auth");
-      if (auth.current) await signOut(auth.current).catch(() => {});
+      await otp.finish();
     } catch (err) {
       console.error("[demo] registration failed:", err);
       setMessage("We couldn't reach the Mathology server just now. Please try again in a moment.");
@@ -188,9 +121,7 @@ export function DemoClass({ className }: { className?: string }) {
   };
 
   const changePhone = () => {
-    confirmation.current = null;
-    setOtpSent(false);
-    setResendIn(0);
+    otp.reset();
     setValues((v) => ({ ...v, otp: "" }));
     setErrors((e) => ({ ...e, otp: undefined }));
   };
@@ -249,7 +180,7 @@ export function DemoClass({ className }: { className?: string }) {
               noValidate
               onSubmit={(e) => {
                 e.preventDefault();
-                if (otpSent) verifyAndRegister();
+                if (otp.sent) verifyAndRegister();
                 else sendOtp();
               }}
             >
@@ -345,10 +276,10 @@ export function DemoClass({ className }: { className?: string }) {
                     inputMode="numeric"
                     autoComplete="tel-national"
                     placeholder="10-digit mobile number"
-                    readOnly={otpSent}
+                    readOnly={otp.sent}
                     aria-invalid={errors.phone ? true : undefined}
                   />
-                  {otpSent && (
+                  {otp.sent && (
                     <button type="button" className={styles.inline} onClick={changePhone}>
                       Change
                     </button>
@@ -357,7 +288,7 @@ export function DemoClass({ className }: { className?: string }) {
                 {errors.phone && <small className={styles.error}>{errors.phone}</small>}
               </div>
 
-              {otpSent && (
+              {otp.sent && (
                 <div className={styles.field}>
                   <label htmlFor="demo-otp">OTP</label>
                   <input
@@ -376,8 +307,8 @@ export function DemoClass({ className }: { className?: string }) {
                   ) : (
                     <small>Sent by SMS to +91 {values.phone}.</small>
                   )}
-                  <button type="button" className={styles.inline} disabled={resendIn > 0 || !!busy} onClick={sendOtp}>
-                    {resendIn > 0 ? `Resend OTP in ${resendIn}s` : "Resend OTP"}
+                  <button type="button" className={styles.inline} disabled={otp.resendIn > 0 || !!busy} onClick={sendOtp}>
+                    {otp.resendIn > 0 ? `Resend OTP in ${otp.resendIn}s` : "Resend OTP"}
                   </button>
                 </div>
               )}
@@ -393,14 +324,14 @@ export function DemoClass({ className }: { className?: string }) {
                   ? "Sending OTP…"
                   : busy === "verify"
                     ? "Verifying…"
-                    : otpSent
+                    : otp.sent
                       ? "Verify & register"
                       : "Send OTP"}
               </button>
             </form>
           )}
           {/* Invisible reCAPTCHA required by Firebase phone sign-in; kept mounted across steps */}
-          <div ref={recaptchaBox} />
+          <div ref={otp.recaptchaRef} />
         </div>
       </dialog>
     </>

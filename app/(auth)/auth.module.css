@@ -55,7 +55,8 @@
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* minmax(0, …) lets inputs shrink below their default width */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px;
 }
 
@@ -74,6 +75,8 @@
 }
 
 .field input {
+  width: 100%;
+  min-width: 0;
   padding: 11px 13px;
   border: 1.5px solid var(--border);
   border-radius: 12px;
@@ -139,5 +142,79 @@
 
 .switch a {
   color: var(--brand-red);
+  font-weight: 700;
+}
+
+.field > label {
+  font-weight: 600;
+}
+
+.field select {
+  width: 100%;
+  min-width: 0;
+  padding: 11px 13px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-weight: 400;
+}
+
+.field select:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(107, 191, 235, 0.3);
+}
+
+.field select[aria-invalid] {
+  border-color: var(--brand-red);
+}
+
+/* Phone with +91 prefix */
+
+.phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.phone input {
+  flex: 1;
+  min-width: 0;
+}
+
+.phone > span {
+  padding: 11px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.otp {
+  letter-spacing: 0.3em;
+}
+
+.inline {
+  align-self: flex-start;
+  padding: 4px 2px;
+  border: 0;
+  background: none;
+  color: var(--brand-red);
+  font: inherit;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.inline:disabled {
+  color: var(--text-muted);
+  font-weight: 400;
+  cursor: default;
+}
+
+.formError a {
+  color: inherit;
   font-weight: 700;
 }

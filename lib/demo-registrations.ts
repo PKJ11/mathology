@@ -48,9 +48,3 @@ export async function listDemoRegistrations(): Promise<DemoRegistration[]> {
 
 export const matches = (r: DemoRegistration, f: DemoFilter) =>
   (!f.date || r.date === f.date) && (!f.slot || r.slot === f.slot) && (!f.grade || r.grade === f.grade);
-
-/** "+919876543210" → "+91 98765 43210" */
-export function formatPhone(phone: string) {
-  const m = /^\+91(\d{5})(\d{5})$/.exec(phone);
-  return m ? `+91 ${m[1]} ${m[2]}` : phone;
-}

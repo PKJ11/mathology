@@ -2,14 +2,15 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { login, register, type AuthFormState } from "../actions/auth";
+import { login, registerTeacher, type AuthFormState } from "../actions/auth";
 import styles from "./auth.module.css";
 
 type Props = { mode: "login" | "register"; next?: string };
 
+/** Email + password: teachers, and accounts made before students switched to phone sign-up. */
 export function AuthForm({ mode, next }: Props) {
   const [state, action, pending] = useActionState<AuthFormState, FormData>(
-    mode === "login" ? login : register,
+    mode === "login" ? login : registerTeacher,
     undefined,
   );
   const v = state?.values ?? {};
@@ -32,12 +33,6 @@ export function AuthForm({ mode, next }: Props) {
         error={e.password}
         hint={mode === "register" ? "At least 8 characters, with a letter and a number." : undefined}
       />
-      {mode === "register" && (
-        <div className={styles.row}>
-          <Field label="School (optional)" name="school" autoComplete="organization" defaultValue={v.school} error={e.school} />
-          <Field label="Class / section (optional)" name="className" defaultValue={v.className} error={e.className} />
-        </div>
-      )}
 
       {state?.message && (
         <p className={styles.formError} role="alert">
@@ -46,19 +41,22 @@ export function AuthForm({ mode, next }: Props) {
       )}
 
       <button type="submit" className={styles.submit} disabled={pending}>
-        {pending ? "Please wait…" : mode === "login" ? "Sign in" : "Create account"}
+        {pending ? "Please wait…" : mode === "login" ? "Sign in" : "Create teacher account"}
       </button>
 
       <p className={styles.switch}>
         {mode === "login" ? (
           <>
-            New to Mathology? <Link href={`/register${query}`}>Create an account</Link>
+            New teacher? <Link href={`/register/teacher${query}`}>Create a teacher account</Link>
           </>
         ) : (
           <>
-            Already registered? <Link href={`/login${query}`}>Sign in</Link>
+            Already have an account? <Link href={`/login/email${query}`}>Sign in</Link>
           </>
         )}
+      </p>
+      <p className={styles.switch}>
+        Student? <Link href={`/login${query}`}>Sign in with your phone number</Link>
       </p>
     </form>
   );

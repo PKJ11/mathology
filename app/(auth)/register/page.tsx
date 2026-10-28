@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentUser, safeNext } from "@/lib/auth";
-import { AuthForm } from "../auth-form";
+import { PhoneForm } from "../phone-form";
 import styles from "../auth.module.css";
 
-export const metadata: Metadata = { title: "Create account — Mathology" };
+export const metadata: Metadata = { title: "Register for the labs — Mathology" };
 
 type Props = { searchParams: Promise<{ next?: string }> };
 
@@ -19,12 +19,12 @@ export default async function RegisterPage({ searchParams }: Props) {
         <Link href="/" className={styles.logo}>
           <img src="/logo-color.svg" alt="Mathology by Logicology" />
         </Link>
-        <h1>Create your account</h1>
+        <h1>Register for the labs</h1>
         <p className={styles.lead}>
           Your answers, labs and written reasoning are saved to your account, so you can pick up where you left off and
           get a learning report.
         </p>
-        <AuthForm mode="register" next={next} />
+        <PhoneForm mode="register" next={next} />
       </section>
     </main>
   );

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { canViewOthers, requireUser, toObjectId } from "@/lib/auth";
+import { formatPhone } from "@/lib/student-profile";
 import { buildReport, listStudents } from "@/lib/reports";
 import { AccountMenu } from "../account-menu";
 import { Booklet } from "./booklet";
@@ -57,6 +58,7 @@ async function StudentList() {
               <tr>
                 <th>Student</th>
                 <th>School</th>
+                <th>City</th>
                 <th>Class</th>
                 <th>Last active</th>
               </tr>
@@ -66,9 +68,10 @@ async function StudentList() {
                 <tr key={st.id}>
                   <td>
                     <Link href={`/reports?student=${st.id}`}>{st.name}</Link>
-                    <small>{st.email}</small>
+                    {st.contact && <small>{formatPhone(st.contact)}</small>}
                   </td>
                   <td>{st.school ?? "—"}</td>
+                  <td>{st.city ?? "—"}</td>
                   <td>{st.className ?? "—"}</td>
                   <td>{st.lastActive ? fmt.format(new Date(st.lastActive)) : "Not yet"}</td>
                 </tr>

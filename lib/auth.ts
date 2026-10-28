@@ -12,7 +12,9 @@ const scrypt = promisify(scryptCb) as (pw: string, salt: Buffer, len: number) =>
 export const SESSION_COOKIE = "mth_session";
 const SESSION_DAYS = 30;
 
-export type CurrentUser = Pick<UserDoc, "email" | "name" | "role" | "school" | "className" | "grade"> & { id: string };
+export type CurrentUser = Pick<UserDoc, "email" | "phone" | "name" | "role" | "school" | "className" | "grade"> & {
+  id: string;
+};
 
 // ---------------------------------------------------------------------------
 // Passwords
@@ -79,7 +81,8 @@ export const getCurrentUser = cache(async (): Promise<CurrentUser | null> => {
   if (!user) return null;
   return {
     id: user._id.toHexString(),
-    email: user.email,
+    email: user.email ?? null,
+    phone: user.phone ?? null,
     name: user.name,
     role: user.role,
     school: user.school,

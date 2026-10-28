@@ -10,7 +10,7 @@ export async function AccountMenu({ tone = "light" }: { tone?: "light" | "bar" }
     <div className={`${styles.menu} ${tone === "bar" ? styles.bar : ""}`}>
       {user ? (
         <>
-          <span className={styles.name} title={user.email}>
+          <span className={styles.name} title={user.email ?? user.phone ?? undefined}>
             {user.name.split(" ")[0]}
           </span>
           {canViewOthers(user.role) && (

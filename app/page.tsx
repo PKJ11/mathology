@@ -70,7 +70,7 @@ export default function HomePage() {
           <h1>Mathology by logicology</h1>
           <p>At Logicology we endeavour to make learning fun so that children learn while they play.</p>
           <nav className={styles.actions}>
-            <Link href="#" className={styles.button}>
+            <Link href="/tips" className={styles.button}>
               Fast calculation
               <br />
               tips &amp; tricks

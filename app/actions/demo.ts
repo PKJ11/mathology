@@ -1,9 +1,8 @@
 "use server";
 
-import { createRemoteJWKSet, jwtVerify } from "jose";
-import firebaseConfig from "@/app/config/firebaseConfig";
 import { collections } from "@/lib/db";
 import { DEMO_DATES, DEMO_GRADES, isSlotOpen } from "@/lib/demo-class";
+import { verifiedPhone } from "@/lib/phone-token";
 
 export type DemoInput = {
   name: string;
@@ -20,24 +19,6 @@ export type DemoField = "name" | "grade" | "school" | "date" | "slot" | "otp";
 export type DemoResult =
   | { ok: true; phone: string; updated: boolean }
   | { ok: false; errors?: Partial<Record<DemoField, string>>; message?: string };
-
-// Firebase ID tokens are signed with these public keys: https://firebase.google.com/docs/auth/admin/verify-id-tokens
-const firebaseKeys = createRemoteJWKSet(
-  new URL("https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"),
-);
-
-async function verifiedPhone(idToken: string): Promise<string | null> {
-  const { projectId } = firebaseConfig;
-  try {
-    const { payload } = await jwtVerify(idToken, firebaseKeys, {
-      issuer: `https://securetoken.google.com/${projectId}`,
-      audience: projectId,
-    });
-    return typeof payload.phone_number === "string" ? payload.phone_number : null;
-  } catch {
-    return null;
-  }
-}
 
 const clean = (value: unknown, max: number) => String(value ?? "").trim().replace(/\s+/g, " ").slice(0, max);
 
@@ -56,7 +37,7 @@ export async function registerDemo(input: DemoInput): Promise<DemoResult> {
   else if (!isSlotOpen(date, slot)) errors.slot = "That time has passed or isn't available. Choose another.";
   if (Object.keys(errors).length) return { ok: false, errors };
 
-  const phone = await verifiedPhone(String(input.idToken ?? ""));
+  const phone = await verifiedPhone(input.idToken);
   if (!phone) return { ok: false, errors: { otp: "We couldn't verify your phone number. Request a new OTP." } };
 
   try {

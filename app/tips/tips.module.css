@@ -1,0 +1,89 @@
+.page {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+  padding: 32px 16px;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(253, 210, 1, 0.28), transparent 40%),
+    radial-gradient(circle at 85% 80%, rgba(107, 191, 235, 0.25), transparent 40%),
+    var(--bg);
+}
+
+.card {
+  width: 100%;
+  max-width: 520px;
+  padding: 36px 32px 32px;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: 0 18px 48px rgba(37, 35, 51, 0.08);
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  width: 96px;
+  margin: 0 auto 20px;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--brand-yellow);
+  color: var(--brand-ink);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.card h1 {
+  margin: 12px 0 0;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.card p {
+  margin: 10px 0 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.primary,
+.secondary {
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.15s ease;
+}
+
+.primary {
+  background: var(--brand-red);
+  color: #fff;
+}
+
+.secondary {
+  border: 1.5px solid var(--border);
+  color: var(--text);
+}
+
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-1px);
+}

@@ -8,15 +8,19 @@ import { MongoClient, type Db, type ObjectId } from "mongodb";
 
 export type Role = "student" | "teacher" | "admin";
 
+/** Students sign up with an OTP-verified phone; teachers and early accounts use email + password. */
 export type UserDoc = {
   _id: ObjectId;
-  email: string;
+  email: string | null;
+  phone: string | null; // E.164, from a verified Firebase token
   name: string;
-  passwordHash: string;
+  passwordHash: string | null;
   role: Role;
   school: string | null;
   className: string | null;
   grade: string;
+  dob: string | null; // YYYY-MM-DD
+  city: string | null;
   createdAt: Date;
   lastLoginAt: Date | null;
 };
@@ -217,7 +221,8 @@ export async function collections() {
 
 async function ensureIndexes(db: Db) {
   await Promise.all([
-    db.collection("users").createIndex({ email: 1 }, { unique: true }),
+    uniqueWhenSet(db, "users", "email"),
+    uniqueWhenSet(db, "users", "phone"),
     db.collection("auth_sessions").createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
     db.collection("auth_sessions").createIndex({ userId: 1 }),
 
@@ -244,6 +249,19 @@ async function ensureIndexes(db: Db) {
     db.collection("demo_registrations").createIndex({ phone: 1, nameKey: 1 }, { unique: true }),
     db.collection("demo_registrations").createIndex({ date: 1, slot: 1 }),
   ]);
+}
+
+/**
+ * Unique only among documents that have the field, so phone-only and email-only accounts can coexist.
+ * Replaces the original plain unique email index the first time it runs.
+ */
+async function uniqueWhenSet(db: Db, collection: string, field: string) {
+  const coll = db.collection(collection);
+  const name = `${field}_1`;
+  const existing = (await coll.listIndexes().toArray()).find((i) => i.name === name);
+  // Another server instance may have dropped it first
+  if (existing && !existing.partialFilterExpression) await coll.dropIndex(name).catch(() => {});
+  await coll.createIndex({ [field]: 1 }, { name, unique: true, partialFilterExpression: { [field]: { $type: "string" } } });
 }
 
 export const isDuplicateKey = (err: unknown) =>

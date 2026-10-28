@@ -3,7 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { canViewOthers, requireUser } from "@/lib/auth";
 import { DEMO_DATES, DEMO_GRADES, DEMO_SLOTS, dateLabel, slotLabel } from "@/lib/demo-class";
-import { cleanFilter, formatPhone, listDemoRegistrations, matches, type DemoFilter } from "@/lib/demo-registrations";
+import { cleanFilter, listDemoRegistrations, matches, type DemoFilter } from "@/lib/demo-registrations";
+import { formatPhone } from "@/lib/student-profile";
 import { AccountMenu } from "../account-menu";
 import styles from "./registrations.module.css";
 

@@ -5,6 +5,10 @@ import { collections } from "@/lib/db";
 
 const TRACKER_VERSION = "2";
 
+// The chapter's own logo links to its in-page start screen (#home); send it to the site homepage instead.
+// Capture phase, registered before the chapter scripts, so their own handlers never see the click.
+const BRAND_TO_HOME = `addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a.brand");if(!a)return;e.preventDefault();e.stopImmediatePropagation();(window.top||window).location.href="/";},true);`;
+
 // Serves a chapter's self-contained HTML with the interaction tracker injected ahead of
 // the chapter scripts, plus the learner's last synced state so progress follows them.
 export async function GET(request: Request, { params }: { params: Promise<{ chapter: string }> }) {
@@ -40,7 +44,9 @@ export async function GET(request: Request, { params }: { params: Promise<{ chap
     .join("\\u2028")
     .split(String.fromCharCode(0x2029))
     .join("\\u2029");
-  const inject = `<script>window.__MTH__=${json};</script><script src="/mathology-tracker.js?v=${TRACKER_VERSION}"></script>`;
+  const inject =
+    `<script>window.__MTH__=${json};</script><script src="/mathology-tracker.js?v=${TRACKER_VERSION}"></script>` +
+    `<script>${BRAND_TO_HOME}</script>`;
 
   const html = await chapterHtml(chapter.number);
   const body = /<head[^>]*>/i.test(html) ? html.replace(/<head[^>]*>/i, (m) => m + inject) : inject + html;

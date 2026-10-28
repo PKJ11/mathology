@@ -1,6 +1,7 @@
 import { canViewOthers, getCurrentUser } from "@/lib/auth";
 import { slotLabel } from "@/lib/demo-class";
-import { cleanFilter, formatPhone, listDemoRegistrations, matches } from "@/lib/demo-registrations";
+import { cleanFilter, listDemoRegistrations, matches } from "@/lib/demo-registrations";
+import { formatPhone } from "@/lib/student-profile";
 
 // Spreadsheet apps run cells starting with these as formulas
 const cell = (value: string) => {
