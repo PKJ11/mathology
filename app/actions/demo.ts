@@ -1,7 +1,10 @@
 "use server";
 
+import { after } from "next/server";
+import type { ObjectId } from "mongodb";
 import { collections } from "@/lib/db";
-import { DEMO_DATES, DEMO_GRADES, isSlotOpen } from "@/lib/demo-class";
+import { DEMO_DATES, DEMO_GRADES, dateLabel, isSlotOpen, slotLabel } from "@/lib/demo-class";
+import { sendWhatsAppTemplate } from "@/lib/notifications/whatsapp-service";
 import { verifiedPhone } from "@/lib/phone-token";
 
 export type DemoInput = {
@@ -49,9 +52,30 @@ export async function registerDemo(input: DemoInput): Promise<DemoResult> {
       { $set: { name, grade, school, date, slot, updatedAt: now }, $setOnInsert: { createdAt: now } },
       { upsert: true },
     );
+    const booking = result.upsertedId ?? (await demoRegistrations.findOne({ phone, nameKey: name.toLowerCase() }))?._id;
+    // After the response, so the student isn't kept waiting on WhatsApp
+    if (booking) after(() => confirmOnWhatsApp(booking, { phone, name, date, slot }));
     return { ok: true, phone, updated: !result.upsertedId };
   } catch (err) {
     console.error("[demo] registration failed:", err);
     return { ok: false, message: "We couldn't save your registration just now. Please try again in a moment." };
+  }
+}
+
+async function confirmOnWhatsApp(id: ObjectId, b: { phone: string; name: string; date: string; slot: string }) {
+  const sent = await sendWhatsAppTemplate("DEMO_CLASS_CONFIRMATION", b.phone, {
+    name: b.name,
+    date: dateLabel(b.date),
+    time: slotLabel(b.slot),
+  });
+  if (!sent.success) console.error(`[demo] WhatsApp confirmation to ${b.phone} failed: ${sent.error}`);
+  try {
+    const { demoRegistrations } = await collections();
+    await demoRegistrations.updateOne(
+      { _id: id },
+      { $set: { whatsapp: { sent: sent.success, messageId: sent.messageId, error: sent.error, at: new Date() } } },
+    );
+  } catch (err) {
+    console.error("[demo] couldn't record WhatsApp status:", err);
   }
 }

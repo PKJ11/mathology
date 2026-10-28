@@ -167,6 +167,8 @@ export type DemoRegistrationDoc = {
   slot: string;
   createdAt: Date;
   updatedAt: Date;
+  /** Outcome of the latest WhatsApp confirmation (sent after every booking or change) */
+  whatsapp?: { sent: boolean; messageId: string | null; error: string | null; at: Date };
 };
 
 // ---------------------------------------------------------------------------

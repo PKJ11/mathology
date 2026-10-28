@@ -12,6 +12,8 @@ export type DemoRegistration = {
   slot: string;
   createdAt: Date;
   updatedAt: Date;
+  /** null while the confirmation hasn't been attempted yet */
+  whatsappSent: boolean | null;
 };
 
 export type DemoFilter = { date?: string; slot?: string; grade?: string };
@@ -43,6 +45,7 @@ export async function listDemoRegistrations(): Promise<DemoRegistration[]> {
     slot: d.slot,
     createdAt: d.createdAt,
     updatedAt: d.updatedAt,
+    whatsappSent: d.whatsapp ? d.whatsapp.sent : null,
   }));
 }
 

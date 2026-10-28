@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   const rows = (await listDemoRegistrations()).filter((r) => matches(r, filter));
 
   const lines = [
-    ["Name", "Grade", "School", "Phone", "Date", "Time", "Registered at (UTC)"],
+    ["Name", "Grade", "School", "Phone", "Date", "Time", "Registered at (UTC)", "WhatsApp"],
     ...rows.map((r) => [
       r.name,
       r.grade,
@@ -32,6 +32,7 @@ export async function GET(request: Request) {
       r.date,
       slotLabel(r.slot),
       r.createdAt.toISOString(),
+      r.whatsappSent === null ? "pending" : r.whatsappSent ? "sent" : "failed",
     ]),
   ].map((cols) => cols.map(cell).join(","));
 

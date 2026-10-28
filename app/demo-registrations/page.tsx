@@ -148,6 +148,9 @@ export default async function DemoRegistrationsPage({ searchParams }: Props) {
                       <a href={`tel:${r.phone}`} className={styles.phone}>
                         {formatPhone(r.phone)}
                       </a>
+                      <small className={r.whatsappSent === false ? styles.failed : undefined}>
+                        {r.whatsappSent === null ? "WhatsApp pending" : r.whatsappSent ? "WhatsApp sent" : "WhatsApp failed"}
+                      </small>
                     </td>
                     <td>
                       {dateLabel(r.date)}

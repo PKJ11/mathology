@@ -235,6 +235,10 @@
   text-decoration: none;
 }
 
+.list .failed {
+  color: var(--brand-red);
+}
+
 .phone:hover {
   color: var(--brand-red);
   text-decoration: underline;
