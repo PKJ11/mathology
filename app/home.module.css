@@ -23,6 +23,19 @@
   inset: 0;
   width: 100%;
   height: 100%;
+  /* Grows out of the notch above the dice */
+  transform-origin: 50.17% 85.6%;
+  animation: grow-from-dice 0.8s cubic-bezier(0.3, 1.15, 0.5, 1) 0.8s both;
+}
+
+@keyframes grow-from-dice {
+  from {
+    opacity: 0;
+    scale: 0.04;
+  }
+  25% {
+    opacity: 1;
+  }
 }
 
 .blob {
@@ -31,7 +44,7 @@
 
 .shadow {
   fill: rgba(0, 40, 34, 0.14);
-  animation: fade-in 0.6s ease 1.2s both;
+  animation: fade-in 0.6s ease 2.4s both;
 }
 
 @keyframes fade-in {
@@ -44,9 +57,71 @@
   display: none;
 }
 
+/* Light burst behind the dice while everything flies out of it */
+.glow {
+  position: absolute;
+  left: calc(1150 * var(--u));
+  top: calc(994 * var(--u));
+  width: calc(700 * var(--u));
+  aspect-ratio: 1;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 246, 200, 0.95) 0%,
+    rgba(253, 210, 1, 0.45) 22%,
+    rgba(253, 210, 1, 0) 62%
+  );
+  pointer-events: none;
+  animation: glow 1.8s ease-out 1.1s both;
+}
+
+@keyframes glow {
+  from {
+    opacity: 0;
+    scale: 0.2;
+  }
+  25% {
+    opacity: 1;
+    scale: 1;
+  }
+  to {
+    opacity: 0;
+    scale: 1.15;
+  }
+}
+
+/* Logo, heading words, text and buttons: --fx / --fy are set on the page to point at the dice */
+.fly {
+  animation: fly-from-dice 0.85s cubic-bezier(0.3, 1.2, 0.6, 1) var(--at) both;
+}
+
+@keyframes fly-from-dice {
+  from {
+    opacity: 0;
+    translate: var(--fx, 0px) var(--fy, 0px);
+    scale: 0.15;
+    rotate: var(--spin);
+  }
+  30% {
+    opacity: 1;
+  }
+}
+
+.content h1 .fly {
+  display: inline-block;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .shadow {
+  .shadow,
+  .shape,
+  .fly,
+  .account {
     animation: none;
+  }
+
+  .glow {
+    display: none;
   }
 }
 
@@ -159,6 +234,16 @@
     display: block;
   }
 
+  .shape {
+    transform-origin: 50% 62.35%;
+  }
+
+  .glow {
+    left: calc(400 * var(--u));
+    top: calc(1130 * var(--u));
+    width: calc(520 * var(--u));
+  }
+
   .logo {
     top: calc(40 * var(--u));
     width: calc(130 * var(--u));
@@ -197,4 +282,5 @@
   top: 16px;
   right: 16px;
   z-index: 5;
+  animation: fade-in 0.5s ease 3.3s both;
 }

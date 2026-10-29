@@ -1,6 +1,8 @@
+import type { CSSProperties } from "react";
 import Link from "next/link";
 import { AccountMenu } from "./account-menu";
 import { DemoClass } from "./demo-class";
+import { FlyFromAnchor } from "./fly-from-anchor";
 import { Backdrop, Decor, type DecorItem } from "./decor";
 import styles from "./home.module.css";
 
@@ -35,14 +37,23 @@ const decor: DecorItem[] = [
   { src: "cube-white.svg", anchor: true, d: { x: 1088, y: 932, w: 125 }, m: { x: 340, y: 1070, w: 120 } },
 ];
 
+/** Flies an element out of the dice at `at` seconds, tilted by `spin` degrees until it lands. */
+const fly = (at: number, spin: number) => ({
+  "data-fly": "",
+  style: { "--at": `${at}s`, "--spin": `${spin}deg` } as CSSProperties,
+});
+
+// Entrance, after the client's reference video: the dice lands alone, the white shape grows out of
+// it, then the artwork, logo, heading words, text and buttons tumble out of it to their places.
 export default function HomePage() {
   return (
     <main className={styles.hero}>
-      <Backdrop />
+      <Backdrop still />
       <div className={styles.account}>
         <AccountMenu />
       </div>
-      <div className={styles.stage}>
+      <div className={styles.stage} data-fly-root="">
+        <FlyFromAnchor />
         <svg className={`${styles.shape} ${styles.desktopOnly}`} viewBox="0 0 2302 1080" preserveAspectRatio="none" aria-hidden="true">
           <ellipse cx="575" cy="944" rx="285" ry="24" className={styles.shadow} />
           <ellipse cx="1880" cy="944" rx="365" ry="24" className={styles.shadow} />
@@ -60,25 +71,38 @@ export default function HomePage() {
           />
         </svg>
 
+        <div className={styles.glow} aria-hidden="true" />
         <Decor items={decor} />
 
-        <Link href="/" className={styles.logo}>
+        <Link href="/" className={`${styles.logo} ${styles.fly}`} {...fly(2.15, -40)}>
           <img src="/logo-color.svg" alt="Mathology by Logicology" />
         </Link>
 
         <div className={styles.content}>
-          <h1>Mathology by logicology</h1>
-          <p>At Logicology we endeavour to make learning fun so that children learn while they play.</p>
+          <h1>
+            <span className={styles.fly} {...fly(2.3, -35)}>
+              Mathology
+            </span>{" "}
+            <span className={styles.fly} {...fly(2.4, 30)}>
+              by
+            </span>{" "}
+            <span className={styles.fly} {...fly(2.5, 40)}>
+              logicology
+            </span>
+          </h1>
+          <p className={styles.fly} {...fly(2.65, -20)}>
+            At Logicology we endeavour to make learning fun so that children learn while they play.
+          </p>
           <nav className={styles.actions}>
-            <Link href="/tips" className={styles.button}>
+            <Link href="/tips" className={`${styles.button} ${styles.fly}`} {...fly(2.8, -30)}>
               Fast calculation
               <br />
               tips &amp; tricks
             </Link>
-            <Link href="/chapters" className={styles.button}>
+            <Link href="/chapters" className={`${styles.button} ${styles.fly}`} {...fly(2.9, 25)}>
               Class 10 Labs
             </Link>
-            <DemoClass className={`${styles.button} ${styles.demo}`} />
+            <DemoClass className={`${styles.button} ${styles.demo} ${styles.fly}`} {...fly(3, 35)} />
           </nav>
         </div>
       </div>

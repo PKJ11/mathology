@@ -30,9 +30,9 @@ const place = ({ d, m }: DecorItem, i: number) =>
     "--mr": m?.r ?? 0,
   }) as CSSProperties;
 
-/** Green grid background that rises from the bottom of the screen on load. */
-export function Backdrop() {
-  return <div className={styles.backdrop} aria-hidden="true" />;
+/** Green grid background that rises from the bottom of the screen on load (or is simply there, if `still`). */
+export function Backdrop({ still = false }: { still?: boolean }) {
+  return <div className={`${styles.backdrop} ${still ? styles.still : ""}`} aria-hidden="true" />;
 }
 
 const centre = (b: Box) => ({ x: b.x + b.w / 2, y: b.y + b.w / 2 });
@@ -75,6 +75,7 @@ export function Decor({ items, delay = 0 }: { items: DecorItem[]; delay?: number
       ]
         .filter(Boolean)
         .join(" ")}
+      data-anchor={item === anchor ? "" : undefined}
       style={{
         ...place(item, delay + i),
         ...(desktop &&
@@ -85,6 +86,8 @@ export function Decor({ items, delay = 0 }: { items: DecorItem[]; delay?: number
             "--mfx": mobile[i].x,
             "--mfy": mobile[i].y,
             "--mn": mobile[i].order,
+            // Tumble while flying out, alternating direction
+            "--spin": ((i * 47) % 140 + 40) * (i % 2 ? 1 : -1),
           }),
       }}
     />

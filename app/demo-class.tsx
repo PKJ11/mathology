@@ -25,7 +25,7 @@ type Booked = { name: string; grade: string; date: string; slot: string; phone: 
 const EMPTY: Values = { name: "", grade: "", school: "", date: "", slot: "", phone: "", otp: "" };
 
 /** "Register for demo class" button plus the registration popup, which also opens once on a visitor's first visit. */
-export function DemoClass({ className }: { className?: string }) {
+export function DemoClass({ className, ...button }: React.ComponentProps<"button">) {
   const dialog = useRef<HTMLDialogElement>(null);
   const otp = usePhoneOtp();
 
@@ -144,7 +144,7 @@ export function DemoClass({ className }: { className?: string }) {
 
   return (
     <>
-      <button type="button" className={className} onClick={open} aria-haspopup="dialog">
+      <button {...button} type="button" className={className} onClick={open} aria-haspopup="dialog">
         Register for
         <br />
         demo class

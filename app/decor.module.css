@@ -17,6 +17,10 @@
   animation: rise-backdrop 0.9s cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 
+.still {
+  animation: none;
+}
+
 @keyframes rise-backdrop {
   from {
     translate: 0 100%;
@@ -68,18 +72,21 @@
   }
 }
 
-/* Anchor-first entrance: the anchor pops into place, then the rest fly out of it, nearest first */
+/*
+ * Anchor-first entrance: the anchor pops into place, then (once the page's own entrance has
+ * had its turn) the rest tumble out of it to their places, nearest first.
+ */
 
 .burst {
   --fx: var(--dfx);
   --fy: var(--dfy);
   --n: var(--dn);
-  animation: burst-out 0.9s cubic-bezier(0.3, 1.25, 0.6, 1) calc(1.45s + var(--n) * 55ms) both;
+  animation: burst-out 0.9s cubic-bezier(0.3, 1.2, 0.6, 1) calc(1.25s + var(--n) * 45ms) both;
 }
 
 .burst.float {
   animation:
-    burst-out 0.9s cubic-bezier(0.3, 1.25, 0.6, 1) calc(1.45s + var(--n) * 55ms) both,
+    burst-out 0.9s cubic-bezier(0.3, 1.2, 0.6, 1) calc(1.25s + var(--n) * 45ms) both,
     float 6s ease-in-out calc(var(--i) * -0.7s) infinite;
 }
 
@@ -88,6 +95,7 @@
     opacity: 0;
     translate: calc(var(--fx) * var(--u)) calc(var(--fy) * var(--u));
     scale: 0.15;
+    rotate: calc((var(--r) + var(--spin)) * 1deg);
   }
   25% {
     opacity: 1;
@@ -96,8 +104,8 @@
 
 .anchor {
   /* Above the others so they appear to come out of it */
-  z-index: 1;
-  animation: anchor-in 0.75s cubic-bezier(0.34, 1.6, 0.64, 1) 0.65s both;
+  z-index: 2;
+  animation: anchor-in 0.6s cubic-bezier(0.34, 1.6, 0.64, 1) 0.1s both;
 }
 
 @keyframes anchor-in {
