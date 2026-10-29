@@ -58,19 +58,28 @@
   margin: 0 auto;
 }
 
+.viewer {
+  position: relative;
+  /*
+   * Fit a two-page spread (2 × 460 : 650) within the viewport height, but never shrink it below
+   * 800px (400px pages, ~12px text): on short laptop screens the page scrolls a little instead.
+   * Narrower than that, page-flip switches to one page at a time (see minWidth in booklet.tsx).
+   */
+  width: min(100%, max(800px, calc((100dvh - 140px) * 1.415)));
+  margin: 0 auto;
+}
+
 .stage {
   display: flex;
   justify-content: center;
-  /* Fit a two-page spread (2 × 460 : 650) within the viewport height */
-  width: min(100%, calc((100dvh - 190px) * 1.415));
-  min-width: min(100%, 300px);
-  margin: 0 auto;
   padding: 12px 0 8px;
 }
 
 .book {
   width: 100%;
   max-width: 1240px;
+  /* page-flip sets an inline min-width from minWidth, which would overflow small phones */
+  min-width: 0 !important;
   filter: drop-shadow(0 24px 36px rgba(20, 18, 30, 0.22));
 }
 
@@ -79,13 +88,73 @@
   color: var(--text-muted);
 }
 
+/* Page arrows either side of the book; they move onto its edges when there's no room beside it */
+.side {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0 0 4px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.8rem;
+  line-height: 1;
+  translate: 0 -50%;
+  box-shadow: 0 6px 18px rgba(20, 18, 30, 0.14);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+.side:hover:not(:disabled) {
+  border-color: var(--brand-red);
+  color: var(--brand-red);
+}
+
+.side:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidePrev {
+  left: -60px;
+}
+
+.sideNext {
+  right: -60px;
+}
+
+@media (max-width: 940px) {
+  .sidePrev {
+    left: 4px;
+  }
+
+  .sideNext {
+    right: 4px;
+  }
+}
+
+/* Phones: a single page fills the width, so the arrows would cover it; the buttons sit just below */
+@media (max-width: 560px) {
+  .side {
+    display: none;
+  }
+}
+
 .controls {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 14px;
+  width: fit-content;
+  max-width: 100%;
+  margin: 10px auto 0;
 }
 
 .controls button {
@@ -120,6 +189,36 @@
   text-align: center;
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* Short screens (small laptops): give the height to the booklet */
+@media (max-height: 800px) {
+  .desk {
+    padding-bottom: 12px;
+  }
+
+  .top {
+    padding: 8px 0;
+  }
+
+  .stage {
+    padding-top: 6px;
+  }
+
+  .tip {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .controls button {
+    padding: 7px 12px;
+  }
+
+  .counter {
+    order: -1;
+    flex-basis: 100%;
+  }
 }
 
 /* ------------------------------------------------------------------ pages */
@@ -731,6 +830,7 @@
 
 @media print {
   .top,
+  .viewer,
   .stage,
   .controls,
   .tip,

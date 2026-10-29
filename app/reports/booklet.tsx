@@ -38,7 +38,8 @@ export function Booklet({ children, title }: { children: ReactNode; title: strin
         width: 460,
         height: 650,
         size: "stretch",
-        minWidth: 280,
+        // Below two pages of this width the booklet shows one page at a time, so text stays readable
+        minWidth: 380,
         maxWidth: 620,
         minHeight: 396,
         maxHeight: 876,
@@ -90,7 +91,32 @@ export function Booklet({ children, title }: { children: ReactNode; title: strin
 
   return (
     <section className={styles.wrap} aria-label={title}>
-      <div ref={stageRef} className={styles.stage} />
+      <div className={styles.viewer}>
+        <div ref={stageRef} className={styles.stage} />
+        {/* Beside the book, so turning pages never needs a scroll to the controls */}
+        {ready && (
+          <>
+            <button
+              type="button"
+              className={`${styles.side} ${styles.sidePrev}`}
+              onClick={() => flipRef.current?.flipPrev()}
+              disabled={page === 0}
+              aria-label="Previous page"
+            >
+              ‹
+            </button>
+            <button
+              type="button"
+              className={`${styles.side} ${styles.sideNext}`}
+              onClick={() => flipRef.current?.flipNext()}
+              disabled={page >= count - (portrait ? 1 : 2)}
+              aria-label="Next page"
+            >
+              ›
+            </button>
+          </>
+        )}
+      </div>
       {!ready && <p className={styles.loading}>Opening your booklet…</p>}
 
       <nav className={styles.controls} aria-label="Booklet pages">

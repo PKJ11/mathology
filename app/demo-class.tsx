@@ -17,6 +17,8 @@ import { isIndianMobile } from "@/lib/student-profile";
 import styles from "./demo-class.module.css";
 
 const SEEN_KEY = "mth_demo_popup_seen";
+// The first-visit popup opens this long after the homepage entrance animation ends
+const POPUP_DELAY_MS = 3000;
 
 type Field = DemoField | "phone";
 type Values = { name: string; grade: string; school: string; date: string; slot: string; phone: string; otp: string };
@@ -48,13 +50,27 @@ export function DemoClass({ className, ...button }: React.ComponentProps<"button
       // Storage blocked (private mode): don't nag on every visit
     }
     if (seen) return;
-    const timer = setTimeout(() => {
-      try {
-        localStorage.setItem(SEEN_KEY, "1");
-      } catch {}
-      if (!dialog.current?.open) dialog.current?.showModal();
-    }, 900);
-    return () => clearTimeout(timer);
+
+    // Wait for the page's entrance animation to finish (looping ones never do, so skip them), then a pause
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const entrance = document
+      .getAnimations()
+      .filter((a) => Number.isFinite(a.effect?.getComputedTiming().endTime ?? Infinity))
+      .map((a) => a.finished);
+    Promise.allSettled(entrance).then(() => {
+      if (cancelled) return;
+      timer = setTimeout(() => {
+        try {
+          localStorage.setItem(SEEN_KEY, "1");
+        } catch {}
+        if (!dialog.current?.open) dialog.current?.showModal();
+      }, POPUP_DELAY_MS);
+    });
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, [running]);
 
   if (!running) return null;
