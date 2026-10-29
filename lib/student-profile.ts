@@ -1,6 +1,6 @@
 // Lab registration fields shared by the form and the server action.
 
-export const STUDENT_GRADES = ["6", "7", "8", "9", "10", "11", "12"] as const;
+export const STUDENT_GRADES = ["9", "10"] as const;
 
 const MIN_AGE = 4;
 const MAX_AGE = 25;

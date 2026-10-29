@@ -32,7 +32,7 @@ const decor: DecorItem[] = [
   { src: "pi.png", d: { x: 1555, y: 600, w: 382 }, m: { x: 490, y: 1040, w: 250 } },
   { src: "books.png", d: { x: 1868, y: 803, w: 322 }, m: { x: 560, y: 1220, w: 220 } },
   { src: "ab2.png", d: { x: 1790, y: 1003, w: 120 }, m: { x: 520, y: 1450, w: 200 } },
-  { src: "cube-white.svg", d: { x: 1088, y: 932, w: 125 }, m: { x: 340, y: 1070, w: 120 } },
+  { src: "cube-white.svg", anchor: true, d: { x: 1088, y: 932, w: 125 }, m: { x: 340, y: 1070, w: 120 } },
 ];
 
 export default function HomePage() {

@@ -6,11 +6,11 @@ import { usePhoneOtp } from "./use-phone-otp";
 import {
   DEMO_DATES,
   DEMO_GRADES,
-  DEMO_SLOTS,
   dateLabel,
   demoIsRunning,
   isDateOpen,
   isSlotOpen,
+  slotForGrade,
   slotLabel,
 } from "@/lib/demo-class";
 import { isIndianMobile } from "@/lib/student-profile";
@@ -60,7 +60,15 @@ export function DemoClass({ className }: { className?: string }) {
   if (!running) return null;
 
   const set = (key: keyof Values, value: string) => {
-    setValues((v) => ({ ...v, [key]: value, ...(key === "date" && !isSlotOpen(value, v.slot) ? { slot: "" } : {}) }));
+    setValues((v) => {
+      const next = { ...v, [key]: value };
+      // Grade 7 and 8 each have one class time; drop a date that time has already passed on
+      if (key === "grade") {
+        next.slot = slotForGrade(value) ?? "";
+        if (next.date && !isSlotOpen(next.date, next.slot)) next.date = "";
+      }
+      return next;
+    });
     setErrors((e) => ({ ...e, [key]: undefined }));
     setMessage(null);
   };
@@ -71,7 +79,7 @@ export function DemoClass({ className }: { className?: string }) {
     if (!values.grade) e.grade = "Choose a grade.";
     if (values.school.trim().length < 2) e.school = "Enter the school name.";
     if (!values.date) e.date = "Choose a date.";
-    if (!values.slot) e.slot = "Choose a time.";
+    else if (values.slot && !isSlotOpen(values.date, values.slot)) e.date = "That class has already started. Choose another date.";
     if (!isIndianMobile(values.phone)) e.phone = "Enter a 10-digit mobile number.";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -187,7 +195,7 @@ export function DemoClass({ className }: { className?: string }) {
               <header className={styles.head}>
                 <span className={styles.tag}>Free · Grades 7 &amp; 8</span>
                 <h2 id="demo-title">Register for a demo class</h2>
-                <p className={styles.lead}>A live, hands-on maths class. Pick a day and time that suits you.</p>
+                <p className={styles.lead}>A live, hands-on maths class. Grade 7 meets 4 – 5 pm and Grade 8 meets 5 – 6 pm. Pick a day that suits you.</p>
               </header>
 
               <label className={styles.field}>
@@ -235,7 +243,7 @@ export function DemoClass({ className }: { className?: string }) {
                       name="date"
                       value={d}
                       checked={values.date === d}
-                      disabled={!isDateOpen(d)}
+                      disabled={values.slot ? !isSlotOpen(d, values.slot) : !isDateOpen(d)}
                       onChange={() => set("date", d)}
                     >
                       {dateLabel(d)}
@@ -247,20 +255,15 @@ export function DemoClass({ className }: { className?: string }) {
 
               <fieldset className={styles.field}>
                 <legend>Time</legend>
-                <div className={styles.choices}>
-                  {DEMO_SLOTS.map((s) => (
-                    <Choice
-                      key={s.id}
-                      name="slot"
-                      value={s.id}
-                      checked={values.slot === s.id}
-                      disabled={!!values.date && !isSlotOpen(values.date, s.id)}
-                      onChange={() => set("slot", s.id)}
-                    >
-                      {s.label}
+                {values.slot ? (
+                  <div className={styles.choices}>
+                    <Choice name="slot" value={values.slot} checked onChange={() => {}}>
+                      {slotLabel(values.slot)}
                     </Choice>
-                  ))}
-                </div>
+                  </div>
+                ) : (
+                  <small>Choose a grade to see the class time.</small>
+                )}
                 {errors.slot && <small className={styles.error}>{errors.slot}</small>}
               </fieldset>
 

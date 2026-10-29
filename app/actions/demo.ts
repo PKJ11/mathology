@@ -3,7 +3,7 @@
 import { after } from "next/server";
 import type { ObjectId } from "mongodb";
 import { collections } from "@/lib/db";
-import { DEMO_DATES, DEMO_GRADES, dateLabel, isSlotOpen, slotLabel } from "@/lib/demo-class";
+import { DEMO_DATES, DEMO_GRADES, dateLabel, isSlotOpen, slotForGrade, slotLabel } from "@/lib/demo-class";
 import { sendWhatsAppTemplate } from "@/lib/notifications/whatsapp-service";
 import { verifiedPhone } from "@/lib/phone-token";
 
@@ -30,14 +30,15 @@ export async function registerDemo(input: DemoInput): Promise<DemoResult> {
   const grade = clean(input.grade, 2);
   const school = clean(input.school, 120);
   const date = clean(input.date, 10);
-  const slot = clean(input.slot, 10);
+  // The time comes from the grade, whatever the form sent
+  const slot = slotForGrade(grade) ?? "";
 
   const errors: Partial<Record<DemoField, string>> = {};
   if (name.length < 2) errors.name = "Enter the student's name.";
   if (!(DEMO_GRADES as readonly string[]).includes(grade)) errors.grade = "Choose Grade 7 or 8.";
   if (school.length < 2) errors.school = "Enter the school name.";
   if (!(DEMO_DATES as readonly string[]).includes(date)) errors.date = "Choose a date.";
-  else if (!isSlotOpen(date, slot)) errors.slot = "That time has passed or isn't available. Choose another.";
+  else if (slot && !isSlotOpen(date, slot)) errors.date = "That class has already started. Choose another date.";
   if (Object.keys(errors).length) return { ok: false, errors };
 
   const phone = await verifiedPhone(input.idToken);

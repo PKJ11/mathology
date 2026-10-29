@@ -278,9 +278,6 @@ export function PhoneForm({ mode, next }: Props) {
           </>
         )}
       </p>
-      <p className={styles.switch}>
-        Teacher? <Link href={`/login/email${query}`}>Sign in with email</Link>
-      </p>
     </form>
   );
 }

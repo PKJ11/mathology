@@ -20,6 +20,11 @@ export const DEMO_SLOTS = [
 
 export type DemoSlotId = (typeof DEMO_SLOTS)[number]["id"];
 
+/** Each grade has its own class time. */
+export const GRADE_SLOT: Record<(typeof DEMO_GRADES)[number], DemoSlotId> = { "7": "16-17", "8": "17-18" };
+
+export const slotForGrade = (grade: string): DemoSlotId | undefined => GRADE_SLOT[grade as keyof typeof GRADE_SLOT];
+
 const TIME_ZONE = "Asia/Kolkata";
 
 /** Classes run in India time, whatever the visitor's clock says. */
