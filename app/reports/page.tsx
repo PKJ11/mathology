@@ -27,6 +27,8 @@ export default async function ReportsPage({ searchParams }: Props) {
 
   return (
     <main className={styles.desk}>
+      {/* Print the booklet as full-bleed A4; zero margins also drop the browser's date, URL and page numbers */}
+      <style>{"@page { size: A4; margin: 0; }"}</style>
       <header className={styles.top}>
         <Link href={teacher ? "/reports" : "/chapters"} className={styles.back}>
           ← {teacher ? "All students" : "Chapters"}

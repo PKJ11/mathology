@@ -28,13 +28,18 @@ function makeDate(tz: string) {
 const chunk = <T,>(list: T[], size: number) =>
   Array.from({ length: Math.ceil(list.length / size) }, (_, i) => list.slice(i * size, i * size + size));
 
+/** Like chunk, but the first page holds fewer because it also carries a summary block. */
+const paginate = <T,>(list: T[], first: number, rest: number) =>
+  list.length <= first ? [list] : [list.slice(0, first), ...chunk(list.slice(first), rest)];
+
 const clipText = (t: string | null, n: number) => (!t ? "" : t.length > n ? t.slice(0, n).trimEnd() + "…" : t);
 
-const STATUS: Record<SkillStatus, { label: string; icon: string; className: string }> = {
-  strong: { label: "Looking strong", icon: "✓", className: s.good },
-  building: { label: "Building", icon: "◐", className: s.warning },
-  revisit: { label: "Revisit", icon: "↻", className: s.serious },
-  early: { label: "Too early to tell", icon: "○", className: s.neutral },
+// Statuses stay neutral: brand colour never stands for mastery or weakness, the glyph and label carry it
+const STATUS: Record<SkillStatus, { label: string; icon: string }> = {
+  strong: { label: "Looking strong", icon: "✓" },
+  building: { label: "Building", icon: "◐" },
+  revisit: { label: "Revisit", icon: "↻" },
+  early: { label: "Too early to tell", icon: "○" },
 };
 
 const MODE_LABEL: Record<string, string> = {
@@ -46,20 +51,36 @@ const MODE_LABEL: Record<string, string> = {
   "adaptive-check": "Adaptive check",
 };
 
-// Sequential blue (light → dark) for the activity calendar
-const HEAT = ["#eef2f7", "#cde2fb", "#9ec5f4", "#5598e7", "#2a78d6", "#184f95"];
+// Style guide blue shades 1–5 for the activity calendar; shade 1 is an inactive day
+const HEAT = ["#edf6fc", "#b8ddf3", "#72b9e3", "#357faf", "#164b70"];
+
+const FOOTER = "Mathology · Class 10";
 
 // ---------------------------------------------------------------------------
 // Page shells
 // ---------------------------------------------------------------------------
 
-type Spec = { section?: string; hard?: boolean; render: (folio: number) => ReactNode };
+type Spec = { section?: string; render: (folio: number) => ReactNode };
+type Tone = "blue" | "yellow" | "pink";
 
-function Paper({ folio, hard, className, children }: { folio: number; hard?: boolean; className?: string; children: ReactNode }) {
+/** The three-colour rule along the top edge of every page. */
+const Rule = () => (
+  <div className={s.rule} aria-hidden="true">
+    <i />
+    <i />
+    <i />
+  </div>
+);
+
+function Paper({ folio, className, children }: { folio: number; className?: string; children: ReactNode }) {
   return (
-    <div data-page="" data-density={hard ? "hard" : "soft"} className={`${s.page} ${hard ? s.hard : ""} ${className ?? ""}`}>
+    <div data-page="" data-density="soft" id={`page-${folio}`} className={`${s.page} ${className ?? ""}`}>
+      <Rule />
       <div className={s.inner}>{children}</div>
-      {!hard && <div className={`${s.folio} ${folio % 2 ? s.folioRight : s.folioLeft}`}>{folio}</div>}
+      <footer className={s.footer}>
+        <span>{FOOTER}</span>
+        <span>{String(folio).padStart(2, "0")}</span>
+      </footer>
     </div>
   );
 }
@@ -73,9 +94,9 @@ function Heading({ kicker, title }: { kicker?: string; title: string }) {
   );
 }
 
-function Stat({ value, label, note }: { value: string; label: string; note?: string }) {
+function Stat({ value, label, note, tone }: { value: string; label: string; note?: string; tone: Tone }) {
   return (
-    <div className={s.stat}>
+    <div className={`${s.stat} ${s[tone]}`}>
       <strong>{value}</strong>
       <span>{label}</span>
       {note && <small>{note}</small>}
@@ -88,6 +109,23 @@ function Meter({ value, label }: { value: number; label: string }) {
     <span className={s.meter} data-tip={label}>
       <span style={{ width: `${Math.max(0, Math.min(1, value)) * 100}%` }} />
     </span>
+  );
+}
+
+/** Sky blue cover shared by the front and back of the booklet. */
+function Cover({ children, label }: { children: ReactNode; label?: string }) {
+  return (
+    <div data-page="" data-density="hard" className={`${s.page} ${s.cover}`}>
+      <Rule />
+      <div className={s.coverLogo}>
+        <img src="/logo-color.svg" alt={label ?? ""} />
+      </div>
+      <div className={s.motif} aria-hidden="true">
+        <i />
+        <i />
+      </div>
+      {children}
+    </div>
   );
 }
 
@@ -118,14 +156,16 @@ export function bookletPages(r: ReportData): ReactNode[] {
               picture of what you can do.
             </li>
             <li>
-              <b>Supported</b> answers came after help or practice mode. They show learning in progress, not a weakness.
+              <b>Supported answers</b> came after help or practice mode. They show learning in progress, not a weakness.
             </li>
             <li>
               <b>Too early to tell</b> means there isn&apos;t enough evidence yet. An unattempted skill is not a weak
               skill.
             </li>
             <li>Marking a lesson complete is your own report of finishing it, not a test result.</li>
-            <li>Active time counts only while the chapter was on screen and in use; breaks are left out.</li>
+            <li>
+              <b>Active time</b> counts only while the chapter was on screen and in use; breaks are left out.
+            </li>
           </ul>
           <p className={s.muted}>
             Answers are checked in the browser by each chapter&apos;s rules. Times are shown in {r.timezone.replace("_", " ")} time.
@@ -159,16 +199,23 @@ export function bookletPages(r: ReportData): ReactNode[] {
         <Paper folio={n}>
           <Heading kicker="Summary" title="At a glance" />
           <div className={s.stats}>
-            <Stat value={minutes(t.activeMinutes)} label="active learning" note={plural(t.sessions, "visit")} />
-            <Stat value={String(t.attempts)} label="questions answered" note={`${pct(t.correct, t.attempts)} correct`} />
+            <Stat tone="blue" value={minutes(t.activeMinutes)} label="active learning" note={plural(t.sessions, "visit")} />
+            <Stat tone="blue" value={String(t.attempts)} label="questions answered" note={`${pct(t.correct, t.attempts)} correct`} />
             <Stat
+              tone="yellow"
               value={pct(t.independentCorrect, t.independentAttempts)}
               label="correct on your own"
               note={`${plural(t.independentAttempts, "answer")} without help`}
             />
-            <Stat value={`${t.chaptersStarted} / 14`} label="chapters started" note={`${plural(t.lessonsCompleted, "lesson")} marked done`} />
-            <Stat value={`${t.runsCompleted} / ${t.runsStarted}`} label="challenges finished" />
             <Stat
+              tone="yellow"
+              value={`${t.chaptersStarted} / 14`}
+              label="chapters started"
+              note={`${plural(t.lessonsCompleted, "lesson")} marked done`}
+            />
+            <Stat tone="pink" value={`${t.runsCompleted} / ${t.runsStarted}`} label="challenges finished" />
+            <Stat
+              tone="pink"
               value={t.avgSeconds != null ? `${Math.round(t.avgSeconds)} s` : "—"}
               label="per question"
               note="average active time"
@@ -192,18 +239,15 @@ export function bookletPages(r: ReportData): ReactNode[] {
           <ol className={s.bars}>
             {r.chapters.map((c) => (
               <li key={c.number}>
-                <span className={s.barLabel}>
-                  <b>{c.number}</b> {c.title}
-                </span>
+                <b className={s.barNo}>{c.number}</b>
+                <span className={s.barLabel}>{c.title}</span>
                 {c.attempts ? (
                   <span
-                    className={s.barTrack}
+                    className={s.barValue}
                     data-tip={`${c.title}: ${c.correct} of ${c.attempts} correct, ${c.independentAttempts} on your own`}
                   >
-                    <span className={s.barFill} style={{ width: `${ratio(c.correct, c.attempts) * 100}%` }} />
-                    <span className={s.barValue}>
-                      {pct(c.correct, c.attempts)} <small>· {c.attempts}</small>
-                    </span>
+                    {pct(c.correct, c.attempts)} · {c.attempts}
+                    <Meter value={ratio(c.correct, c.attempts)} label={`${c.correct} of ${c.attempts} correct`} />
                   </span>
                 ) : (
                   <span className={s.barEmpty}>{c.activeMinutes ? "Explored, no answers yet" : "Not started"}</span>
@@ -224,7 +268,8 @@ export function bookletPages(r: ReportData): ReactNode[] {
       streak = x.attempts || x.activeMinutes ? streak + 1 : 0;
       best = Math.max(best, streak);
     }
-    const level = (v: number) => (v === 0 ? 0 : Math.min(5, 1 + Math.floor((v / maxDay) * 4.999)));
+    // 0 → inactive (shade 1); answered days spread over shades 2–5, the busiest day darkest
+    const level = (v: number) => (v === 0 ? 0 : 1 + Math.min(3, Math.floor((v / maxDay) * 3.999)));
     specs.push({
       section: "Activity",
       render: (n) => (
@@ -232,26 +277,29 @@ export function bookletPages(r: ReportData): ReactNode[] {
           <Heading kicker="Last 5 weeks" title="When you learned" />
           <p className={s.caption}>Each square is a day, darker means more questions answered.</p>
           <div className={s.calendar} role="table" aria-label="Questions answered per day">
-            {r.daily.map((x) => (
-              <span
-                key={x.date}
-                role="cell"
-                className={s.day}
-                style={{ background: HEAT[level(x.attempts)] }}
-                data-tip={`${d.day(x.date + "T12:00:00Z")}: ${x.attempts} questions, ${minutes(x.activeMinutes)}`}
-              />
-            ))}
+            {r.daily.map((x) => {
+              const l = level(x.attempts);
+              return (
+                <span
+                  key={x.date}
+                  role="cell"
+                  className={`${s.day} ${l ? "" : s.dayEmpty}`}
+                  style={{ background: HEAT[l] }}
+                  data-tip={`${d.day(x.date + "T12:00:00Z")}: ${x.attempts} questions, ${minutes(x.activeMinutes)}`}
+                />
+              );
+            })}
           </div>
           <div className={s.legend}>
             <span>Fewer</span>
-            {HEAT.map((c) => (
-              <i key={c} style={{ background: c }} />
+            {HEAT.map((c, i) => (
+              <i key={c} className={i ? "" : s.dayEmpty} style={{ background: c }} />
             ))}
             <span>More</span>
           </div>
           <div className={s.stats}>
-            <Stat value={String(activeDays)} label={activeDays === 1 ? "active day" : "active days"} note="in the last 35" />
-            <Stat value={plural(best, "day")} label="longest streak" />
+            <Stat tone="blue" value={String(activeDays)} label={activeDays === 1 ? "active day" : "active days"} note="in the last 35" />
+            <Stat tone="yellow" value={plural(best, "day")} label="longest streak" />
           </div>
           <p className={s.footnote}>
             First visit {d.day(r.period.from)} · latest {d.day(r.period.to)}
@@ -281,8 +329,8 @@ export function bookletPages(r: ReportData): ReactNode[] {
                   <td>{m.attempts}</td>
                   <td>
                     <span className={s.cellBar}>
-                      <Meter value={ratio(m.correct, m.attempts)} label={`${m.correct} of ${m.attempts} correct`} />
                       {pct(m.correct, m.attempts)}
+                      <Meter value={ratio(m.correct, m.attempts)} label={`${m.correct} of ${m.attempts} correct`} />
                     </span>
                   </td>
                 </tr>
@@ -290,17 +338,22 @@ export function bookletPages(r: ReportData): ReactNode[] {
             </tbody>
           </table>
           <div className={s.stats}>
-            <Stat value={String(t.supportUses)} label="hints & explanations" />
-            <Stat value={String(t.rejectedSubmissions)} label={t.rejectedSubmissions === 1 ? "answer sent back" : "answers sent back"} note="empty or not readable" />
+            <Stat tone="yellow" value={String(t.supportUses)} label="hints & explanations" />
+            <Stat
+              tone="yellow"
+              value={String(t.rejectedSubmissions)}
+              label={t.rejectedSubmissions === 1 ? "answer sent back" : "answers sent back"}
+              note="empty or not readable"
+            />
           </div>
           <p className={s.footnote}>Asking for help is part of learning. Supported answers are kept apart from your own.</p>
         </Paper>
       ),
     });
 
-    // One or more pages per active chapter
+    // One or more pages per active chapter; the first page also carries the chapter's statistics
     for (const c of active) {
-      const groups = c.skills.length ? chunk(c.skills, 7) : [[]];
+      const groups = c.skills.length ? paginate(c.skills, 7, 9) : [[]];
       groups.forEach((skills, i) =>
         specs.push({
           section: i === 0 ? `Chapter ${c.number} · ${c.title}` : undefined,
@@ -323,7 +376,7 @@ export function bookletPages(r: ReportData): ReactNode[] {
                     <span className={s.cardMeta}>
                       Chapter {m.chapter} · {clipText(m.skill, 60)} · {d.short(m.at)}
                     </span>
-                    {m.prompt && <p className={s.cardPrompt}>{clipText(m.prompt, 160)}</p>}
+                    {m.prompt && <p className={s.cardTitle}>{clipText(m.prompt, 160)}</p>}
                     <p>
                       <span className={s.mark}>You:</span> {clipText(m.response, 80) || "—"}
                     </p>
@@ -365,33 +418,35 @@ export function bookletPages(r: ReportData): ReactNode[] {
       );
     }
 
-    // Adaptive next steps
+    // Adaptive next steps; reflowed onto further pages rather than cut at the page edge
     if (r.adaptive.decisions || r.adaptive.interventions || r.adaptive.remediations) {
-      specs.push({
-        section: "Adaptive next steps",
-        render: (n) => (
-          <Paper folio={n}>
-            <Heading kicker="Suggested by the labs" title="Adaptive next steps" />
-            <div className={s.stats}>
-              <Stat value={String(r.adaptive.decisions)} label="recommendations" />
-              <Stat value={String(r.adaptive.interventions)} label="focused lessons opened" />
-            </div>
-            <ul className={s.cards}>
-              {r.adaptive.recent.map((a, j) => (
-                <li key={j}>
-                  <span className={s.cardMeta}>
-                    Chapter {a.chapter} · {d.short(a.at)}
-                  </span>
-                  <p>
-                    <b>{clipText(a.skill, 70)}</b>
-                  </p>
-                  {a.reason && <p className={s.muted}>{clipText(a.reason, 140)}</p>}
-                </li>
-              ))}
-            </ul>
-          </Paper>
-        ),
-      });
+      paginate(r.adaptive.recent, 5, 7).forEach((list, i) =>
+        specs.push({
+          section: i === 0 ? "Adaptive next steps" : undefined,
+          render: (n) => (
+            <Paper folio={n}>
+              <Heading kicker="Suggested by the labs" title={i === 0 ? "Adaptive next steps" : "More next steps"} />
+              {i === 0 && (
+                <div className={s.stats}>
+                  <Stat tone="blue" value={String(r.adaptive.decisions)} label="recommendations" />
+                  <Stat tone="yellow" value={String(r.adaptive.interventions)} label="focused lessons" note="opened" />
+                </div>
+              )}
+              <ul className={s.cards}>
+                {list.map((a, j) => (
+                  <li key={j}>
+                    <span className={s.cardMeta}>
+                      Chapter {a.chapter} · {d.short(a.at)}
+                    </span>
+                    <p className={s.cardTitle}>{clipText(a.skill, 90)}</p>
+                    {a.reason && <p>{clipText(a.reason, 200)}</p>}
+                  </li>
+                ))}
+              </ul>
+            </Paper>
+          ),
+        }),
+      );
     }
   }
 
@@ -404,7 +459,11 @@ export function bookletPages(r: ReportData): ReactNode[] {
       render: (n) => (
         <Paper folio={n} className={s.notes}>
           <Heading kicker="Your page" title="Notes" />
-          <div className={s.lines} />
+          <div className={s.lines}>
+            {Array.from({ length: 19 }, (_, i) => (
+              <i key={i} />
+            ))}
+          </div>
         </Paper>
       ),
     });
@@ -423,9 +482,11 @@ export function bookletPages(r: ReportData): ReactNode[] {
         <ol className={s.toc}>
           {entries.map((e) => (
             <li key={e.title}>
-              <span>{e.title}</span>
-              <i />
-              <b>{e.folio}</b>
+              {/* data-goto lets the on-screen booklet turn to the page; the href links pages in the PDF */}
+              <a href={`#page-${e.folio}`} data-goto={e.folio}>
+                <span>{e.title}</span>
+                <b>{e.folio}</b>
+              </a>
             </li>
           ))}
         </ol>
@@ -438,25 +499,27 @@ export function bookletPages(r: ReportData): ReactNode[] {
   const meta = [`Class ${student.grade}`, student.className, student.school].filter(Boolean).join(" · ");
 
   return [
-    <div key="cover" data-page="" data-density="hard" className={`${s.page} ${s.hard} ${s.cover}`}>
-      <div className={s.coverInner}>
-        <img src="/logo-white.svg" alt="Mathology by Logicology" className={s.coverLogo} />
+    <Cover key="cover" label="Mathology by Logicology">
+      <div className={s.coverText}>
         <span className={s.coverKicker}>Learning report</span>
         <h1>{student.name}</h1>
-        <p>{meta}</p>
-        <p className={s.coverPeriod}>
-          {r.period.from ? `${d.day(r.period.from)} – ${d.day(r.period.to)}` : "No activity yet"}
+        <p className={s.coverMeta}>{meta}</p>
+      </div>
+      <p className={s.coverDate}>{r.period.from ? `${d.day(r.period.from)} – ${d.day(r.period.to)}` : "No activity yet"}</p>
+    </Cover>,
+    ...specs.map((spec, i) => <Fragment key={i}>{spec.render(i + 2)}</Fragment>),
+    <Cover key="back">
+      <div className={s.coverText}>
+        <p className={s.tagline}>
+          Learn.
+          <br />
+          Challenge.
+          <br />
+          Reflect.
         </p>
       </div>
-    </div>,
-    ...specs.map((spec, i) => <Fragment key={i}>{spec.render(i + 2)}</Fragment>),
-    <div key="back" data-page="" data-density="hard" className={`${s.page} ${s.hard} ${s.backCover}`}>
-      <div className={s.coverInner}>
-        <img src="/logo-white.svg" alt="" className={s.backLogo} />
-        <p>Learn. Challenge. Reflect.</p>
-        <p className={s.coverPeriod}>Generated {d.day(r.generatedAt)}</p>
-      </div>
-    </div>,
+      <p className={s.coverDate}>Generated {d.day(r.generatedAt)}</p>
+    </Cover>,
   ];
 }
 
@@ -480,7 +543,10 @@ function ChapterPage({
       <header className={s.chapterBand}>
         <span className={s.chapterNo}>{c.number}</span>
         <div>
-          <span className={s.kicker}>Chapter {c.number}{parts > 1 ? ` · part ${part} of ${parts}` : ""}</span>
+          <span className={s.kicker}>
+            Chapter {c.number}
+            {parts > 1 ? ` · part ${part} of ${parts}` : ""}
+          </span>
           <h2>{c.title}</h2>
         </div>
       </header>
@@ -518,19 +584,17 @@ function ChapterPage({
             const st = STATUS[k.status];
             return (
               <li key={k.id}>
-                <div className={s.skillHead}>
+                <div className={s.skillMain}>
                   <span className={s.skillTitle}>{clipText(k.title, 90)}</span>
-                  <span className={`${s.chip} ${st.className}`}>
-                    <i aria-hidden="true">{st.icon}</i>
-                    {st.label}
-                  </span>
-                </div>
-                <div className={s.skillFacts}>
                   <Meter value={ratio(k.correct, k.attempts)} label={`${k.correct} of ${k.attempts} correct`} />
-                  <span>
+                  <span className={s.skillFacts}>
                     {k.correct}/{k.attempts} correct · {k.independentCorrect}/{k.independentAttempts} on your own
                   </span>
                 </div>
+                <span className={s.chip}>
+                  <i aria-hidden="true">{st.icon}</i>
+                  {st.label}
+                </span>
               </li>
             );
           })}

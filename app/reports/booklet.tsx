@@ -31,8 +31,19 @@ export function Booklet({ children, title }: { children: ReactNode; title: strin
 
       host = document.createElement("div");
       host.className = styles.book;
-      source.querySelectorAll<HTMLElement>("[data-page]").forEach((p) => host!.appendChild(p.cloneNode(true)));
+      source.querySelectorAll<HTMLElement>("[data-page]").forEach((p) => {
+        const copy = p.cloneNode(true) as HTMLElement;
+        copy.removeAttribute("id"); // the printed originals keep the ids the contents links point at
+        host!.appendChild(copy);
+      });
       stage.appendChild(host);
+      // Contents links turn the booklet to their page instead of jumping to the hidden original
+      host.addEventListener("click", (e) => {
+        const link = (e.target as Element).closest<HTMLAnchorElement>("a[data-goto]");
+        if (!link) return;
+        e.preventDefault();
+        flip?.flip(Number(link.dataset.goto) - 1);
+      });
 
       flip = new PageFlip(host, {
         width: 460,
