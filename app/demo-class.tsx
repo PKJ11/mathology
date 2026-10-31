@@ -19,6 +19,9 @@ import styles from "./demo-class.module.css";
 const SEEN_KEY = "mth_demo_popup_seen";
 // The first-visit popup opens this long after the homepage entrance animation ends
 const POPUP_DELAY_MS = 3000;
+// Demo days that are fully booked: shown greyed out, with a "slot full" hover note.
+// Match the format used in DEMO_DATES.
+const FULL_DATES = new Set(["2026-11-05", "2026-11-11"]);
 
 type Field = DemoField | "phone";
 type Values = { name: string; grade: string; school: string; date: string; slot: string; phone: string; otp: string };
@@ -95,6 +98,7 @@ export function DemoClass({ className, ...button }: React.ComponentProps<"button
     if (!values.grade) e.grade = "Choose a grade.";
     if (values.school.trim().length < 2) e.school = "Enter the school name.";
     if (!values.date) e.date = "Choose a date.";
+    else if (FULL_DATES.has(values.date)) e.date = "That day's slot is full. Choose another date.";
     else if (values.slot && !isSlotOpen(values.date, values.slot)) e.date = "That class has already started. Choose another date.";
     if (!isIndianMobile(values.phone)) e.phone = "Enter a 10-digit mobile number.";
     setErrors(e);
@@ -253,18 +257,22 @@ export function DemoClass({ className, ...button }: React.ComponentProps<"button
               <fieldset className={styles.field}>
                 <legend>Date (November)</legend>
                 <div className={`${styles.choices} ${styles.dates}`}>
-                  {DEMO_DATES.map((d) => (
-                    <Choice
-                      key={d}
-                      name="date"
-                      value={d}
-                      checked={values.date === d}
-                      disabled={values.slot ? !isSlotOpen(d, values.slot) : !isDateOpen(d)}
-                      onChange={() => set("date", d)}
-                    >
-                      {dateLabel(d)}
-                    </Choice>
-                  ))}
+                  {DEMO_DATES.map((d) => {
+                    const full = FULL_DATES.has(d);
+                    return (
+                      <Choice
+                        key={d}
+                        name="date"
+                        value={d}
+                        checked={values.date === d}
+                        disabled={full || (values.slot ? !isSlotOpen(d, values.slot) : !isDateOpen(d))}
+                        title={full ? "Slot is full on this day" : undefined}
+                        onChange={() => set("date", d)}
+                      >
+                        {dateLabel(d)}
+                      </Choice>
+                    );
+                  })}
                 </div>
                 {errors.date && <small className={styles.error}>{errors.date}</small>}
               </fieldset>
@@ -362,6 +370,7 @@ function Choice({
   value,
   checked,
   disabled,
+  title,
   onChange,
   children,
 }: {
@@ -369,11 +378,13 @@ function Choice({
   value: string;
   checked: boolean;
   disabled?: boolean;
+  title?: string;
   onChange: () => void;
   children: React.ReactNode;
 }) {
   return (
-    <label className={styles.choice}>
+    // title sits on the label because browsers don't show tooltips on disabled inputs
+    <label className={styles.choice} title={title}>
       <input type="radio" name={name} value={value} checked={checked} disabled={disabled} onChange={onChange} />
       <span>{children}</span>
     </label>
